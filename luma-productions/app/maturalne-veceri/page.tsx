@@ -94,14 +94,11 @@ export default function MaturalneVeceri() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative h-[400px] text-white flex items-center">
+      <section className="relative h-[400px] bg-gradient-to-r from-purple-900 to-pink-900 text-white flex items-center">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <h1 className="text-5xl md:text-6xl font-bold mb-4">
             Maturalne Večeri
           </h1>
-          <p className="text-xl md:text-2xl text-gray-200">
-            Uhvatite čaroliju vašeg slavlja i kreirajte uspomene koje će trajati zauvijek
-          </p>
         </div>
       </section>
 
