@@ -11,23 +11,23 @@ export default function Footer() {
           </div>
           <div>
             <h3 className="text-xl font-bold mb-4">Kontakt</h3>
-            <p className="text-gray-400">Email: info@fotostudio.hr</p>
-            <p className="text-gray-400">Tel: +385 XX XXX XXXX</p>
+            <p className="text-gray-400">Email: info@luma-productions.net</p>
+            <p className="text-gray-400">Tel: +385 97 6172 191</p>
           </div>
           <div>
             <h3 className="text-xl font-bold mb-4">Pratite nas</h3>
             <div className="flex space-x-4">
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">
+              <a href="https://www.instagram.com/lumaproductions__/" className="text-gray-400 hover:text-white transition-colors">
                 Instagram
               </a>
               <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                Facebook
+                LinkedIn
               </a>
             </div>
           </div>
         </div>
         <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-          <p>&copy; {new Date().getFullYear()} Foto Studio. Sva prava pridržana.</p>
+          <p>&copy; {new Date().getFullYear()} Luma Productions. Sva prava pridržana.</p>
         </div>
       </div>
     </footer>
