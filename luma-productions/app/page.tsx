@@ -44,12 +44,6 @@ export default function Home() {
 
   const [currentImage, setCurrentImage] = useState(0);
 
-  // Scroll animations for icons
-  const { scrollYProgress } = useScroll();
-  const rotateDiamond = useTransform(scrollYProgress, [0, 1], [0, 360]);
-  const rotateCamera = useTransform(scrollYProgress, [0, 1], [0, -180]);
-  const rotateLightning = useTransform(scrollYProgress, [0, 1], [0, 180]);
-
   // Automatic cycling every 5 seconds
   useEffect(() => {
     const interval = setInterval(() => {
@@ -76,21 +70,38 @@ export default function Home() {
         </div>
 
         {/* Hero content at bottom-left */}
-        <div className="relative px-8 pb-12 text-left max-w-3xl">
+        <div className="relative px-4 pb-4 text-left max-w-3xl">
           <h1 className="text-5xl md:text-6xl font-bold mb-4">Luma Productions</h1>
-          <p className="text-xl md:text-2xl mb-6 text-gray-200">
-            Čuvamo vaše najdragocjenije trenutke
-          </p>
 
-          {/* Image selector buttons */}
-          <div className="mt-6 flex space-x-2">
+          {/* Image selector buttons with smooth sliding animation */}
+          <div className="relative inline-flex space-x-2 rounded-full">
+            {/* Animated sliding indicator */}
+            <motion.div
+              className="absolute h-3 w-3 bg-white rounded-full"
+              animate={{
+                x: currentImage * 20, // 12px width + 8px gap
+              }}
+              transition={{
+                type: "spring",
+                stiffness: 300,
+                damping: 30
+              }}
+              style={{
+                left: '8px',
+                top: '50%',
+                translateY: '-50%'
+              }}
+            />
+            
+            {/* Buttons */}
             {heroImages.map((_, index) => (
               <button
                 key={index}
                 onClick={() => setCurrentImage(index)}
-                className={`w-3 h-3 rounded-full ${
-                  currentImage === index ? 'bg-white' : 'bg-gray-400'
-                } transition-colors`}
+                className="relative w-3 h-3 rounded-full transition-colors z-10"
+                style={{
+                  backgroundColor: currentImage === index ? 'transparent' : 'rgba(255, 255, 255, 0.4)'
+                }}
                 aria-label={`Show image ${index + 1}`}
               ></button>
             ))}
@@ -174,41 +185,6 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mt-20">
             {/* Left side - Text */}
             <div className="order-2 md:order-1">
-              <h3 className="text-3xl font-bold mb-4">Brza dostava.</h3>
-              <p className="text-gray-600 text-lg">
-                Obrađene fotografije dostavljamo u rekordnom vremenu, 
-                bez kompromisa na kvaliteti. Vaše uspomene brzo 
-                postaju dostupne za dijeljenje.
-              </p>
-            </div>
-
-            {/* Right side - Image/Visual */}
-            <div className="bg-gray-100 rounded-2xl p-12 min-h-[400px] flex items-center justify-center order-1 md:order-2">
-              <div className="text-center">
-                  ⚡
-                <h3 className="text-3xl font-bold mb-4">Efikasnost.</h3>
-                <p className="text-gray-600 text-lg">
-                  Od rezervacije do isporuke - sve je jednostavno i brzo.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Third row */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mt-20">
-            {/* Left side - Image/Visual */}
-            <div className="bg-gray-100 rounded-2xl p-12 min-h-[400px] flex items-center justify-center">
-              <div className="text-center">    
-                  💎
-                <h3 className="text-3xl font-bold mb-4">Vrhunska kvaliteta.</h3>
-                <p className="text-gray-600 text-lg">
-                  Svaka fotografija je pažljivo obrađena i retuširana.
-                </p>
-              </div>
-            </div>
-
-            {/* Right side - Text */}
-            <div>
               <h3 className="text-3xl font-bold mb-4">Rezervirajte s lakoćom.</h3>
               <p className="text-gray-600 text-lg">
                 Naša stranica omogućava jednostavnu rezervaciju termina. 
@@ -216,7 +192,19 @@ export default function Home() {
                 fotografom koji će uhvatiti svaki poseban trenutak.
               </p>
             </div>
+
+            {/* Right side - Image/Visual */}
+            <div className="bg-gray-100 rounded-2xl p-12 min-h-[400px] flex items-center justify-center order-1 md:order-2">
+              <div className="text-center">
+                  💎
+                <h3 className="text-3xl font-bold mb-4">Vrhunska kvaliteta.</h3>
+                <p className="text-gray-600 text-lg">
+                  Svaka fotografija je pažljivo obrađena i retuširana.
+                </p>
+              </div>
+            </div>
           </div>
+
         </div>
       </section>
       

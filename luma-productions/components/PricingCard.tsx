@@ -11,25 +11,18 @@ interface PricingCardProps {
 
 export default function PricingCard({ plan }: PricingCardProps) {
   return (
-    <div
-      className={`rounded-lg p-8 ${
-        plan.highlighted
-          ? 'bg-gray-900 text-white shadow-2xl scale-105'
-          : 'bg-white text-gray-900 shadow-lg'
-      } transition-transform hover:scale-110 duration-300`}
-    >
-      <h3 className="text-2xl font-bold mb-4">{plan.name}</h3>
+    <div className="rounded-2xl p-8 bg-white text-gray-900 shadow-lg transition-all duration-300 hover:shadow-2xl hover:border-gray-400 border-2 border-gray-200 flex flex-col h-full">
+      <h3 className="text-2xl font-bold mb-4 text-gray-900">{plan.name}</h3>
       <div className="mb-6">
-        <span className="text-4xl font-bold">{plan.price}</span>
-        <span className={plan.highlighted ? 'text-gray-300' : 'text-gray-600'}>€</span>
+        <span className="text-4xl font-bold text-black">{plan.price}</span>
       </div>
-      <ul className="space-y-3 mb-8">
+      
+      {/* Features list with flex-grow to push button to bottom */}
+      <ul className="space-y-3 mb-8 flex-grow">
         {plan.features.map((feature, index) => (
           <li key={index} className="flex items-start">
             <svg
-              className={`w-5 h-5 mr-2 mt-0.5 flex-shrink-0 ${
-                plan.highlighted ? 'text-green-400' : 'text-green-500'
-              }`}
+              className="w-5 h-5 mr-2 mt-0.5 flex-shrink-0 text-green-500"
               fill="none"
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -39,19 +32,11 @@ export default function PricingCard({ plan }: PricingCardProps) {
             >
               <path d="M5 13l4 4L19 7"></path>
             </svg>
-            <span className="text-sm">{feature}</span>
+            <span className="text-sm text-gray-700">{feature}</span>
           </li>
         ))}
       </ul>
-      <button
-        className={`w-full py-3 px-6 rounded-lg font-semibold transition-colors duration-200 ${
-          plan.highlighted
-            ? 'bg-white text-gray-900 hover:bg-gray-100'
-            : 'bg-gray-900 text-white hover:bg-gray-800'
-        }`}
-      >
-        Kontaktirajte nas
-      </button>
+    
     </div>
   );
 }

@@ -29,7 +29,7 @@ export default function Navbar() {
             >
               <span
                 className={`h-[2px] w-full bg-[#be9d5a] transition-all duration-400 ease-in-out ${
-                  isOpen ? 'translate-y-[11px] rotate-45' : ''
+                  isOpen ? 'translate-y-[11.5px] rotate-45' : ''
                 }`}
               />
               <span
@@ -39,7 +39,7 @@ export default function Navbar() {
               />
               <span
                 className={`h-[2px] w-full bg-[#be9d5a] transition-all duration-400 ease-in-out ${
-                  isOpen ? '-translate-y-[11px] -rotate-45' : ''
+                  isOpen ? '-translate-y-[11.5px] -rotate-45' : ''
                 }`}
               />
             </button>

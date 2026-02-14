@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import PricingCard from '@/components/PricingCard';
+import ImageSlider from '@/components/ImageSlider';
 
 export const metadata: Metadata = {
   title: 'Fotografija Maturalne Večeri',
@@ -32,7 +33,6 @@ export default function MaturalneVeceri() {
         '300+ digitalno obrađenih fotografija',
         'Isporuka materijala do 4 dana',
       ],
-      highlighted: true,
     },
     {
       name: 'Video #1',
@@ -40,7 +40,7 @@ export default function MaturalneVeceri() {
       features: [
         '1 snimatelj',
         'Highlight video do 180 sekundi',
-        'sporuka materijala kroz 4 dana',
+        'Isporuka materijala kroz 4 dana',
       ],
     },
     {
@@ -55,10 +55,10 @@ export default function MaturalneVeceri() {
     },
     {
       name: 'Mix #1',
-      price: '13€/ maturantu',
+      price: '13€/maturant',
       features: [
         'Do 100 maturanata',
-        '1 fotograf ',
+        '1 fotograf',
         '2 snimatelja',
         'Do 400 digitalno obrađenih fotografija',
         'Video cijele večeri u trajanju do 60 minuta',
@@ -67,7 +67,7 @@ export default function MaturalneVeceri() {
     },
     {
       name: 'Mix #2',
-      price: '10€/ maturantu',
+      price: '10€/maturant',
       features: [
         '100+ maturanata',
         '2 fotografa',
@@ -80,21 +80,21 @@ export default function MaturalneVeceri() {
   ];
 
   const galleryImages = [
-    { id: 1, alt: 'Maturalna večer 1' },
-    { id: 2, alt: 'Maturalna večer 2' },
-    { id: 3, alt: 'Maturalna večer 3' },
-    { id: 4, alt: 'Maturalna večer 4' },
-    { id: 5, alt: 'Maturalna večer 5' },
-    { id: 6, alt: 'Maturalna večer 6' },
-    { id: 7, alt: 'Maturalna večer 7' },
-    { id: 8, alt: 'Maturalna večer 8' },
-    { id: 9, alt: 'Maturalna večer 9' },
+    { id: 1, alt: 'Maturalna večer 1', src: '/prikaz.webp' },
+    { id: 2, alt: 'Maturalna večer 2', src: '/prikaz2.webp' },
+    { id: 3, alt: 'Maturalna večer 3', src: '/prikaz3.webp' },
+    { id: 4, alt: 'Maturalna večer 4', src: '/prikaz4.webp' },
+    { id: 5, alt: 'Maturalna večer 5', src: '/prikaz5.webp' },
+    { id: 6, alt: 'Maturalna večer 6', src: '/prikaz2.webp' },
+    { id: 7, alt: 'Maturalna večer 7', src: '/prikaz2.webp' },
+    { id: 8, alt: 'Maturalna večer 8', src: '/prikaz2.webp' },
+    { id: 9, alt: 'Maturalna večer 9', src: '/prikaz2.webp' },
   ];
 
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative h-[400px] bg-gradient-to-r from-purple-900 to-pink-900 text-white flex items-center">
+      <section className="relative h-[400px] text-white flex items-center">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <h1 className="text-5xl md:text-6xl font-bold mb-4">
             Maturalne Večeri
@@ -121,23 +121,12 @@ export default function MaturalneVeceri() {
         </div>
       </section>
 
-      {/* Gallery Section */}
-      <section className="bg-gray-50 py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-bold text-center mb-12">Naš Rad</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {galleryImages.map((image) => (
-              <div
-                key={image.id}
-                className="aspect-square bg-gray-200 rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
-              >
-                <div className="w-full h-full flex items-center justify-center text-gray-400">
-                  {image.alt}
-                </div>
-              </div>
-            ))}
-          </div>
+      {/* Gallery Slider Section */}
+      <section className="py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
+          <h2 className="text-4xl font-bold text-center mb-4">Naš Rad</h2>
         </div>
+        <ImageSlider images={galleryImages} />
       </section>
 
       {/* Pricing Section */}

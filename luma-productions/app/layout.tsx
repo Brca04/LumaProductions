@@ -6,14 +6,14 @@ import Footer from "@/components/Footer";
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.vasadomena.hr'),
   title: {
-    default: 'Foto Studio - Profesionalna Fotografija | Vjenčanja, Maturalne Večeri, Krštenja',
-    template: '%s | Foto Studio'
+    default: 'Luma Production - Profesionalna Fotografija | Vjenčanja, Maturalne Večeri, Krštenja',
+    template: '%s | Luma Production'
   },
   description: 'Profesionalna fotografija za vjenčanja, maturalne večeri, krštenja i reklame. Vrhunska kvaliteta i pristupačne cijene.',
   keywords: ['fotografija', 'vjenčanja', 'maturalne večeri', 'krštenja', 'reklame', 'foto studio', 'profesionalni fotograf'],
-  authors: [{ name: 'Foto Studio' }],
-  creator: 'Foto Studio',
-  publisher: 'Foto Studio',
+  authors: [{ name: 'Luma Production' }],
+  creator: 'Luma Production',
+  publisher: 'Luma Production',
   formatDetection: {
     email: false,
     address: false,
@@ -23,13 +23,13 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'hr_HR',
     url: 'https://www.vasadomena.hr',
-    siteName: 'Foto Studio',
-    title: 'Foto Studio - Profesionalna Fotografija',
+    siteName: 'Luma Production',
+    title: 'Luma Production - Profesionalna Fotografija',
     description: 'Profesionalna fotografija za vjenčanja, maturalne večeri, krštenja i reklame.',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Foto Studio - Profesionalna Fotografija',
+    title: 'Luma Production - Profesionalna Fotografija',
     description: 'Profesionalna fotografija za vjenčanja, maturalne večeri, krštenja i reklame.',
   },
   robots: {
