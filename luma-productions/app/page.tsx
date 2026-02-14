@@ -7,26 +7,26 @@ export default function Home() {
       title: 'Maturalne Večeri',
       description: 'Uhvatite najljepše trenutke vaše maturalne večeri',
       href: '/maturalne-veceri',
-      image: '/images/maturalne-placeholder.jpg'
+      image: '/maturalna.webp',
     },
     {
       title: 'Vjenčanja',
       description: 'Vječno sačuvajte najvažniji dan vašeg života',
       href: '/vjencanja',
-      image: '/images/vjencanja-placeholder.jpg'
+      image: '/vjencanje.webp',
     },
     {
       title: 'Krštenja',
       description: 'Posebni obiteljski trenuci zaslužuju posebnu pažnju',
       href: '/krstenja',
-      image: '/images/krstenja-placeholder.jpg'
+      image: '/krstenje.webp',
     },
     {
       title: 'Reklame',
       description: 'Profesionalna fotografija za vaš brend',
       href: '/reklame',
-      image: '/images/reklame-placeholder.jpg'
-    }
+      image: '', // empty means coming soon
+    },
   ];
 
   return (
@@ -57,13 +57,19 @@ export default function Home() {
             <Link
               key={service.href}
               href={service.href}
-              className="group block bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300"
+              className="group block bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300 relative"
             >
-              <div className="relative h-64 bg-gray-200">
-                {/* Placeholder for image - replace with actual images */}
-                <div className="absolute inset-0 flex items-center justify-center text-gray-400">
-                  Placeholder Image
-                </div>
+              <div className="relative h-64 w-full bg-gray-200 flex items-center justify-center">
+                {service.image ? (
+                  <Image
+                    src={service.image}
+                    alt={service.title}
+                    fill
+                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+                ) : (
+                  <span className="text-gray-500 text-2xl font-bold">Uskoro</span>
+                )}
               </div>
               <div className="p-6">
                 <h3 className="text-2xl font-bold mb-2 group-hover:text-gray-600 transition-colors">
