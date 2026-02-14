@@ -1,35 +1,25 @@
 export default function Footer() {
   return (
-    <footer className="bg-gray-900 text-white py-12 mt-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div>
-            <h3 className="text-xl font-bold mb-4">Foto Studio</h3>
-            <p className="text-gray-400">
-              Profesionalna fotografija za sve vaše posebne trenutke.
-            </p>
-          </div>
-          <div>
-            <h3 className="text-xl font-bold mb-4">Kontakt</h3>
-            <p className="text-gray-400">Email: info@luma-productions.net</p>
-            <p className="text-gray-400">Tel: +385 97 6172 191</p>
-          </div>
-          <div>
-            <h3 className="text-xl font-bold mb-4">Pratite nas</h3>
-            <div className="flex space-x-4">
-              <a href="https://www.instagram.com/lumaproductions__/" className="text-gray-400 hover:text-white transition-colors">
-                Instagram
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                LinkedIn
-              </a>
-            </div>
-          </div>
+    <footer className="bg-white text-black">
+      
+      {/* Short top border */}
+      <div className="max-w-5xl mx-auto px-6">
+        <div className="border-t border-[#be9d5a]/40"></div>
+      </div>
+
+      <div className="max-w-5xl mx-auto px-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center text-center md:text-left">
+          {/* You can add columns here if needed */}
         </div>
-        <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-          <p>&copy; {new Date().getFullYear()} Luma Productions. Sva prava pridržana.</p>
+
+        {/* Bottom */}
+        <div>
+          <p className="text-center text-gray-500 text-xs">
+            &copy; {new Date().getFullYear()} Luma Productions. Sva prava pridržana.
+          </p>
         </div>
       </div>
+
     </footer>
   );
 }

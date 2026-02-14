@@ -11,7 +11,7 @@ export default function Navbar() {
     { name: 'Maturalne Večeri', href: '/maturalne-veceri' },
     { name: 'Vjenčanja', href: '/vjencanja' },
     { name: 'Krštenja', href: '/krstenja' },
-    { name: 'Reklame', href: '/reklame' },
+    { name: 'Reklamna produkcija', href: '/reklame' },
     { name: 'Kontakt', href: '/kontakt' },
   ];
 
