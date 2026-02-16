@@ -218,7 +218,6 @@ export default function Home() {
             className="group inline-flex items-center gap-3 px-8 py-4 border-2 border-gray-200 font-semibold text-gray-700 bg-white transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:border-gray-300"
           >
             Ostalo
-            <span className="transform group-hover:translate-x-1 transition-transform">→</span>
           </Link>
         </motion.div>
       </section>
