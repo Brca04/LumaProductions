@@ -11,52 +11,97 @@ export const metadata: Metadata = {
   },
 };
 
+type PlanCategory = 'foto' | 'video' | 'mix';
+
+type PricingPlan = {
+  category: PlanCategory;
+  name: string;
+  price: string;
+  imageSrc: string;
+  imageAlt?: string;
+  features: string[];
+  highlighted?: boolean;
+};
+
 export default function Krstenja() {
-  const pricingPlans = [
+const pricingPlans: PricingPlan[] = [
     {
-      name: 'Basic',
-      price: '249',
+      category: 'foto',
+      name: 'Foto #1',
+      price: '8€/maturant',
+      imageSrc: '/prikaz.webp',
       features: [
-        'Fotografiranje same ceremonije',
-        '2 sata fotografiranja',
-        '50+ obrađenih fotografija',
-        'Online galerija',
-        'Digitalne fotografije u visokoj rezoluciji',
-        'Dostava unutar 10 dana',
+        'Do 30 maturanata',
+        '1 fotograf',
+        '200 digitalno obrađenih fotografija',
+        'Isporuka materijala do 3 dana',
       ],
     },
     {
-      name: 'Standard',
-      price: '399',
+      category: 'foto',
+      name: 'Foto #2',
+      price: '5€/maturant',
+      imageSrc: '/prikaz2.webp',
       features: [
-        'Ceremonija + obiteljsko okupljanje',
-        '4 sata fotografiranja',
-        '100+ obrađenih fotografija',
-        'Online galerija',
-        'Digitalne fotografije u visokoj rezoluciji',
-        'Mini fotoknjiga 20x20cm (15 stranica)',
-        'USB stick s fotografijama',
-        'Dostava unutar 7 dana',
+        '30+ maturanata',
+        '2 fotografa',
+        '300+ digitalno obrađenih fotografija',
+        'Isporuka materijala do 4 dana',
       ],
-      highlighted: true,
     },
     {
-      name: 'Premium',
-      price: '599',
+      category: 'video',
+      name: 'Video #1',
+      price: '7€/maturant',
+      imageSrc: '/prikaz.webp',
       features: [
-        'Cijeli dan (priprema do kraja)',
-        '6 sati fotografiranja',
-        '150+ obrađenih fotografija',
-        'Online galerija',
-        'Digitalne fotografije u visokoj rezoluciji',
-        'Premium fotoknjiga 30x30cm (25 stranica)',
-        'Mini knjiga za bake i djedove 15x15cm',
-        'USB stick s fotografijama',
-        '15 printanih fotografija 15x21cm',
-        'Dostava unutar 5 dana',
+        '1 snimatelj',
+        'Highlight video do 180 sekundi',
+        'Isporuka materijala kroz 4 dana',
       ],
     },
-  ];
+    {
+      category: 'video',
+      name: 'Video #2',
+      price: '7€/maturant',
+      imageSrc: '/prikaz2.webp',
+      features: [
+        '60+ maturanata',
+        '2 snimatelja',
+        'Video cijele večeri u trajanju do 60 minuta',
+        'Isporuka materijala kroz 4 dana',
+      ],
+    },
+    {
+      category: 'mix',
+      name: 'Mix #1',
+      price: '13€/maturant',
+      imageSrc: '/prikaz.webp',
+      features: [
+        'Do 100 maturanata',
+        '1 fotograf',
+        '2 snimatelja',
+        'Do 400 digitalno obrađenih fotografija',
+        'Video cijele večeri u trajanju do 60 minuta',
+        'Isporuka materijala unutar 5 dana',
+      ],
+    },
+    {
+      category: 'mix',
+      name: 'Mix #2',
+      price: '10€/maturant',
+      imageSrc: '/prikaz2.webp',
+      features: [
+        '100+ maturanata',
+        '2 fotografa',
+        '2 snimatelja',
+        '800 digitalno obrađenih fotografija',
+        'Video cijele večeri u trajanju do 60 minuta',
+        'Isporuka materijala unutar 7 dana',
+      ],
+    },
+];
+
 
   const galleryImages = [
     { id: 1, alt: 'Krštenje 1' },

@@ -11,53 +11,93 @@ export const metadata: Metadata = {
   },
 };
 
+type PlanCategory = 'foto' | 'video' | 'mix';
+
+type PricingPlan = {
+  category: PlanCategory;
+  name: string;
+  price: string;
+  imageSrc: string;
+  imageAlt?: string;
+  features: string[];
+  highlighted?: boolean;
+};
+
 export default function Reklame() {
-  const pricingPlans = [
+  const pricingPlans: PricingPlan[] = [
     {
-      name: 'Starter',
-      price: '499',
+      category: 'foto',
+      name: 'Foto #1',
+      price: '8€/maturant',
+      imageSrc: '/prikaz.webp',
       features: [
-        'Pola dana fotografiranja (4h)',
-        'Do 3 različita proizvoda/scene',
-        '20+ finalno obrađenih fotografija',
-        'Osnovni studio setup',
-        'Digitalne fotografije u visokoj rezoluciji',
-        'Komercijalana licenca za korištenje',
-        'Dostava unutar 7 dana',
+        'Do 30 maturanata',
+        '1 fotograf',
+        '200 digitalno obrađenih fotografija',
+        'Isporuka materijala do 3 dana',
       ],
     },
     {
-      name: 'Professional',
-      price: '999',
+      category: 'foto',
+      name: 'Foto #2',
+      price: '5€/maturant',
+      imageSrc: '/prikaz2.webp',
       features: [
-        'Cijeli dan fotografiranja (8h)',
-        'Do 5 različitih proizvoda/scena',
-        '50+ finalno obrađenih fotografija',
-        'Profesionalni studio setup',
-        'Styling i kreativno usmjerenje',
-        'Digitalne fotografije u visokoj rezoluciji',
-        'Komercijalana licenca za korištenje',
-        'Retuš i napredna obrada',
-        'Dostava unutar 5 dana',
+        '30+ maturanata',
+        '2 fotografa',
+        '300+ digitalno obrađenih fotografija',
+        'Isporuka materijala do 4 dana',
       ],
-      highlighted: true,
     },
     {
-      name: 'Enterprise',
-      price: '1999',
+      category: 'video',
+      name: 'Video #1',
+      price: '7€/maturant',
+      imageSrc: '/prikaz.webp',
       features: [
-        'Multi-day produkcija (2-3 dana)',
-        'Neograničen broj proizvoda/scena',
-        '100+ finalno obrađenih fotografija',
-        'Premium studio + lokacijsko fotografiranje',
-        'Full produkcijski tim',
-        'Styling, make-up artist, modeli',
-        'Kreativno usmjerenje i concept development',
-        'Digitalne fotografije u visokoj rezoluciji',
-        'Video content (opcija)',
-        'Komercijalana licenca za korištenje',
-        'Priority retuš i obrada',
-        'Dostava unutar 3 dana',
+        '1 snimatelj',
+        'Highlight video do 180 sekundi',
+        'Isporuka materijala kroz 4 dana',
+      ],
+    },
+    {
+      category: 'video',
+      name: 'Video #2',
+      price: '7€/maturant',
+      imageSrc: '/prikaz2.webp',
+      features: [
+        '60+ maturanata',
+        '2 snimatelja',
+        'Video cijele večeri u trajanju do 60 minuta',
+        'Isporuka materijala kroz 4 dana',
+      ],
+    },
+    {
+      category: 'mix',
+      name: 'Mix #1',
+      price: '13€/maturant',
+      imageSrc: '/prikaz.webp',
+      features: [
+        'Do 100 maturanata',
+        '1 fotograf',
+        '2 snimatelja',
+        'Do 400 digitalno obrađenih fotografija',
+        'Video cijele večeri u trajanju do 60 minuta',
+        'Isporuka materijala unutar 5 dana',
+      ],
+    },
+    {
+      category: 'mix',
+      name: 'Mix #2',
+      price: '10€/maturant',
+      imageSrc: '/prikaz2.webp',
+      features: [
+        '100+ maturanata',
+        '2 fotografa',
+        '2 snimatelja',
+        '800 digitalno obrađenih fotografija',
+        'Video cijele večeri u trajanju do 60 minuta',
+        'Isporuka materijala unutar 7 dana',
       ],
     },
   ];
