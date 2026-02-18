@@ -18,15 +18,25 @@ export default function ImageSlider({ images }: ImageSliderProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const goToNext = () => setCurrentIndex((prev) => (prev + 1) % images.length);
-  const goToPrevious = () => setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
+  const goToPrevious = () =>
+    setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
   const goToImage = (index: number) => setCurrentIndex(index);
 
   const getPreviousIndex = () => (currentIndex - 1 + images.length) % images.length;
   const getNextIndex = () => (currentIndex + 1) % images.length;
 
   return (
-    <div className="relative w-full h-screen bg-black flex items-center justify-center px-8 md:px-24">
-      
+    <div className="relative w-full h-[calc(100dvh-4rem)] bg-black flex items-center justify-center px-8 md:px-24">
+      {/* Styled Heading */}
+      <h1 className="absolute top-20 left-1/2 -translate-x-1/2 z-30 text-center">
+        <span className="block text-sm tracking-[0.4em] text-white/70 uppercase mb-2">
+          Galerija
+        </span>
+        <span className="block text-4xl md:text-6xl font-extrabold bg-gradient-to-r from-white via-gray-200 to-white bg-clip-text text-transparent drop-shadow-[0_4px_20px_rgba(255,255,255,0.25)]">
+          Maturalne večeri
+        </span>
+      </h1>
+
       {/* Left Arrow - Outside */}
       <button
         onClick={goToPrevious}
@@ -46,7 +56,7 @@ export default function ImageSlider({ images }: ImageSliderProps) {
         className="hidden lg:block cursor-pointer z-10"
         onClick={goToPrevious}
       >
-        <div className="relative w-40 h-52 rounded-lg overflow-hidden hover:scale-105 transition-all shadow-xl">
+        <div className="relative w-40 h-52 overflow-hidden hover:scale-105 transition-all shadow-xl ">
           {images[getPreviousIndex()].src ? (
             <Image
               src={images[getPreviousIndex()].src!}
@@ -70,8 +80,8 @@ export default function ImageSlider({ images }: ImageSliderProps) {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.9 }}
-            transition={{ duration: 0.5 }}
-            className="relative w-full h-full"
+            transition={{ duration: 0.25 }}
+            className="relative w-full h-full overflow-hidden rounded-3xl shadow-2xl"
           >
             {images[currentIndex].src ? (
               <Image
@@ -82,7 +92,7 @@ export default function ImageSlider({ images }: ImageSliderProps) {
                 priority
               />
             ) : (
-              <div className="w-full h-full bg-gray-800 flex items-center justify-center text-white rounded-lg">
+              <div className="w-full h-full bg-gray-800 flex items-center justify-center text-white">
                 <span className="text-2xl">{images[currentIndex].alt}</span>
               </div>
             )}
@@ -90,7 +100,7 @@ export default function ImageSlider({ images }: ImageSliderProps) {
         </AnimatePresence>
 
         {/* Image Counter */}
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/70 text-white px-4 py-2 rounded-full">
+        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/70 text-white px-4 py-2 rounded-full text-sm tracking-wide">
           {currentIndex + 1} / {images.length}
         </div>
       </div>
@@ -103,7 +113,7 @@ export default function ImageSlider({ images }: ImageSliderProps) {
         className="hidden lg:block cursor-pointer z-10"
         onClick={goToNext}
       >
-        <div className="relative w-40 h-52 rounded-lg overflow-hidden hover:scale-105 transition-all shadow-xl">
+        <div className="relative w-40 h-52 overflow-hidden hover:scale-105 transition-all shadow-xl">
           {images[getNextIndex()].src ? (
             <Image
               src={images[getNextIndex()].src!}
@@ -136,8 +146,10 @@ export default function ImageSlider({ images }: ImageSliderProps) {
           <button
             key={index}
             onClick={() => goToImage(index)}
-            className={`w-2 h-2 rounded-full transition-all ${
-              index === currentIndex ? 'bg-white w-8' : 'bg-white/50 hover:bg-white/75'
+            className={`h-2 rounded-full transition-all ${
+              index === currentIndex
+                ? 'bg-white w-8'
+                : 'bg-white/50 hover:bg-white/75 w-2'
             }`}
             aria-label={`Go to image ${index + 1}`}
           />

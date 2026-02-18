@@ -10,6 +10,10 @@ export const metadata: Metadata = {
     template: '%s | Luma Production'
   },
   description: 'Profesionalna fotografija za vjenčanja, maturalne večeri, krštenja i reklame. Vrhunska kvaliteta i pristupačne cijene.',
+  icons: {
+    icon: '/lumaLogo.ico',
+    apple: '/lumaLogoApple.png',
+  },
   keywords: ['fotografija', 'vjenčanja', 'maturalne večeri', 'krštenja', 'reklame', 'foto studio', 'profesionalni fotograf'],
   authors: [{ name: 'Luma Production' }],
   creator: 'Luma Production',

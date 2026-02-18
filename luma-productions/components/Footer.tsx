@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 
 export default function Footer() {
   return (
-    <footer className="bg-white text-black py-8 md:py-12">
+    <footer className="bg-white text-black py-8 md:py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         
         {/* Golden Line Above Footer */}
@@ -65,7 +65,7 @@ export default function Footer() {
             className="flex flex-col items-center md:items-end justify-center space-y-3 md:space-y-4"
           >
             <Link
-              href="https://instagram.com/luma_productions"
+              href="https://www.instagram.com/lumaproductions__/"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 text-gray-700 hover:text-[#BE9E5C] transition-colors text-sm md:text-base"
@@ -124,7 +124,7 @@ export default function Footer() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.5 }}
-          className="mt-8 md:mt-12 pt-4 md:pt-6 border-t border-gray-200"
+          className="md:mt-12  md:pt-6 border-t border-gray-200"
         >
           <p className="text-gray-500 text-xs md:text-sm text-center px-4">
             &copy; {new Date().getFullYear()} Luma Productions. Sva prava pridržana.

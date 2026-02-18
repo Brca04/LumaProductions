@@ -1,10 +1,13 @@
+// app/maturalne-veceri/page.tsx (or wherever this page lives)
+
 import { Metadata } from 'next';
 import PricingCard from '@/components/PricingCard';
 import ImageSlider from '@/components/ImageSlider';
 
 export const metadata: Metadata = {
   title: 'Fotografija Maturalne Večeri',
-  description: 'Profesionalna fotografija maturalne večeri. Uhvatite najljepše trenutke slavlja. Pristupačni paketi i vrhunska kvaliteta.',
+  description:
+    'Profesionalna fotografija maturalne večeri. Uhvatite najljepše trenutke slavlja. Pristupačni paketi i vrhunska kvaliteta.',
   keywords: ['maturalne večeri', 'fotografija', 'matura', 'maturalna zabava', 'foto studio'],
   openGraph: {
     title: 'Fotografija Maturalne Večeri | Foto Studio',
@@ -12,11 +15,25 @@ export const metadata: Metadata = {
   },
 };
 
+type PlanCategory = 'foto' | 'video' | 'mix';
+
+type PricingPlan = {
+  category: PlanCategory;
+  name: string;
+  price: string;
+  imageSrc: string;
+  imageAlt?: string;
+  features: string[];
+  highlighted?: boolean;
+};
+
 export default function MaturalneVeceri() {
-  const pricingPlans = [
+  const pricingPlans: PricingPlan[] = [
     {
+      category: 'foto',
       name: 'Foto #1',
       price: '8€/maturant',
+      imageSrc: '/prikaz.webp',
       features: [
         'Do 30 maturanata',
         '1 fotograf',
@@ -25,8 +42,10 @@ export default function MaturalneVeceri() {
       ],
     },
     {
+      category: 'foto',
       name: 'Foto #2',
       price: '5€/maturant',
+      imageSrc: '/prikaz2.webp',
       features: [
         '30+ maturanata',
         '2 fotografa',
@@ -35,8 +54,10 @@ export default function MaturalneVeceri() {
       ],
     },
     {
+      category: 'video',
       name: 'Video #1',
       price: '7€/maturant',
+      imageSrc: '/prikaz.webp',
       features: [
         '1 snimatelj',
         'Highlight video do 180 sekundi',
@@ -44,8 +65,10 @@ export default function MaturalneVeceri() {
       ],
     },
     {
+      category: 'video',
       name: 'Video #2',
       price: '7€/maturant',
+      imageSrc: '/prikaz2.webp',
       features: [
         '60+ maturanata',
         '2 snimatelja',
@@ -54,8 +77,10 @@ export default function MaturalneVeceri() {
       ],
     },
     {
+      category: 'mix',
       name: 'Mix #1',
       price: '13€/maturant',
+      imageSrc: '/prikaz.webp',
       features: [
         'Do 100 maturanata',
         '1 fotograf',
@@ -66,8 +91,10 @@ export default function MaturalneVeceri() {
       ],
     },
     {
+      category: 'mix',
       name: 'Mix #2',
       price: '10€/maturant',
+      imageSrc: '/prikaz2.webp',
       features: [
         '100+ maturanata',
         '2 fotografa',
@@ -91,51 +118,70 @@ export default function MaturalneVeceri() {
     { id: 9, alt: 'Maturalna večer 9', src: '/prikaz2.webp' },
   ];
 
+  // group + sort (#1 before #2)
+  const byNumber = (a: { name: string }, b: { name: string }) => {
+    const numA = Number(a.name.match(/\d+/)?.[0] ?? 0);
+    const numB = Number(b.name.match(/\d+/)?.[0] ?? 0);
+    return numA - numB;
+  };
+
+  const groupedPlans = {
+    foto: pricingPlans.filter((p) => p.category === 'foto').sort(byNumber),
+    video: pricingPlans.filter((p) => p.category === 'video').sort(byNumber),
+    mix: pricingPlans.filter((p) => p.category === 'mix').sort(byNumber),
+  } as const;
+
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="relative h-[400px] bg-gradient-to-r from-purple-900 to-pink-900 text-white flex items-center">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-          <h1 className="text-5xl md:text-6xl font-bold mb-4">
-            Maturalne Večeri
-          </h1>
-        </div>
-      </section>
-
-      {/* Description Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="prose max-w-none">
-          <p className="text-lg text-gray-700 mb-6">
-            Maturalna večer je jedinstveni trenutak u životu svakog maturanta. Naš tim profesionalnih
-            fotografa specijaliziran je za hvatanje emocija, smijeha i posebnih trenutaka koji čine
-            vašu maturu nezaboravnom. Od pripreme do posljednjih trenutaka slavlja, tu smo da
-            dokumentiramo svaki važan trenutak.
-          </p>
-          <p className="text-lg text-gray-700">
-            Naš pristup je nenametljiv, ali precizan - dopuštamo vam da uživate u večeri dok mi
-            hvatamo autentične trenutke radosti i prijateljstva koji će ostati s vama zauvijek.
-          </p>
-        </div>
-      </section>
 
       {/* Gallery Slider Section */}
-      <section className="py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
-          <h2 className="text-4xl font-bold text-center mb-4">Naš Rad</h2>
-        </div>
+      <section>
+        <div className="h-[calc(100dvh-4rem)] text-center">
         <ImageSlider images={galleryImages} />
+        </div>
       </section>
 
-      {/* Pricing Section */}
+      {/* Pricing Section (Grouped with headings) */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <h2 className="text-4xl font-bold text-center mb-4">Naši Paketi</h2>
         <p className="text-center text-gray-600 mb-12 text-lg">
           Odaberite paket koji najbolje odgovara vašim potrebama
         </p>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {pricingPlans.map((plan, index) => (
-            <PricingCard key={index} plan={plan} />
-          ))}
+
+        {/* FOTO */}
+        <div className="mb-16">
+          <div className="flex items-center gap-4 mb-6">
+            <h3 className="text-3xl font-bold">Foto</h3>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {groupedPlans.foto.map((plan) => (
+              <PricingCard key={plan.name} plan={plan} />
+            ))}
+          </div>
+        </div>
+
+        {/* VIDEO */}
+        <div className="mb-16">
+          <div className="flex items-center gap-4 mb-6">
+            <h3 className="text-3xl font-bold">Video</h3>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {groupedPlans.video.map((plan) => (
+              <PricingCard key={plan.name} plan={plan} />
+            ))}
+          </div>
+        </div>
+
+        {/* MIX */}
+        <div>
+          <div className="flex items-center gap-4 mb-6">
+            <h3 className="text-3xl font-bold">Mix</h3>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {groupedPlans.mix.map((plan) => (
+              <PricingCard key={plan.name} plan={plan} />
+            ))}
+          </div>
         </div>
       </section>
     </div>
