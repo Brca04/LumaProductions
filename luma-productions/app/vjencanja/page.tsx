@@ -11,55 +11,93 @@ export const metadata: Metadata = {
   },
 };
 
+type PlanCategory = 'foto' | 'video' | 'mix';
+
+type PricingPlan = {
+  category: PlanCategory;
+  name: string;
+  price: string;
+  imageSrc: string;
+  imageAlt?: string;
+  features: string[];
+  highlighted?: boolean;
+};
+
 export default function Vjencanja() {
-  const pricingPlans = [
+const pricingPlans: PricingPlan[] = [
     {
-      name: 'Classic',
-      price: '899',
+      category: 'foto',
+      name: 'Foto #1',
+      price: '8€/maturant',
+      imageSrc: '/prikaz.webp',
       features: [
-        '6 sati fotografiranja',
-        '300+ obrađenih fotografija',
-        'Online galerija za goste',
-        'Digitalne fotografije u visokoj rezoluciji',
-        'Premium fotoknjiga 30x30cm (30 stranica)',
-        'USB stick u luksuznom pakiranju',
-        'Dostava unutar 30 dana',
+        'Do 30 maturanata',
+        '1 fotograf',
+        '200 digitalno obrađenih fotografija',
+        'Isporuka materijala do 3 dana',
       ],
     },
     {
-      name: 'Platinum',
-      price: '1399',
+      category: 'foto',
+      name: 'Foto #2',
+      price: '5€/maturant',
+      imageSrc: '/prikaz2.webp',
       features: [
-        '10 sati fotografiranja',
-        '500+ obrađenih fotografija',
-        'Fotografiranje pripreme',
-        'Online galerija za goste',
-        'Digitalne fotografije u visokoj rezoluciji',
-        'Premium fotoknjiga 40x40cm (50 stranica)',
-        'Knjiga za roditelje 20x20cm',
-        'USB stick u luksuznom pakiranju',
-        '30 printanih fotografija 20x30cm',
-        'Dostava unutar 21 dan',
+        '30+ maturanata',
+        '2 fotografa',
+        '300+ digitalno obrađenih fotografija',
+        'Isporuka materijala do 4 dana',
       ],
-      highlighted: true,
     },
     {
-      name: 'Diamond',
-      price: '2199',
+      category: 'video',
+      name: 'Video #1',
+      price: '7€/maturant',
+      imageSrc: '/prikaz.webp',
       features: [
-        'Cijeli dan (neograničeno)',
-        '800+ obrađenih fotografija',
-        'Fotografiranje pripreme i probe',
-        'Second shooter (drugi fotograf)',
-        'Online galerija za goste',
-        'Digitalne fotografije u visokoj rezoluciji',
-        '2x Premium fotoknjiga 40x40cm (60 stranica)',
-        '2x Knjiga za roditelje 20x20cm',
-        'USB stick u kristalnom pakiranju',
-        '50 printanih fotografija 20x30cm',
-        'Video highlights (5-7 min)',
-        'Save the date fotografiranje',
-        'Dostava unutar 14 dana',
+        '1 snimatelj',
+        'Highlight video do 180 sekundi',
+        'Isporuka materijala kroz 4 dana',
+      ],
+    },
+    {
+      category: 'video',
+      name: 'Video #2',
+      price: '7€/maturant',
+      imageSrc: '/prikaz2.webp',
+      features: [
+        '60+ maturanata',
+        '2 snimatelja',
+        'Video cijele večeri u trajanju do 60 minuta',
+        'Isporuka materijala kroz 4 dana',
+      ],
+    },
+    {
+      category: 'mix',
+      name: 'Mix #1',
+      price: '13€/maturant',
+      imageSrc: '/prikaz.webp',
+      features: [
+        'Do 100 maturanata',
+        '1 fotograf',
+        '2 snimatelja',
+        'Do 400 digitalno obrađenih fotografija',
+        'Video cijele večeri u trajanju do 60 minuta',
+        'Isporuka materijala unutar 5 dana',
+      ],
+    },
+    {
+      category: 'mix',
+      name: 'Mix #2',
+      price: '10€/maturant',
+      imageSrc: '/prikaz2.webp',
+      features: [
+        '100+ maturanata',
+        '2 fotografa',
+        '2 snimatelja',
+        '800 digitalno obrađenih fotografija',
+        'Video cijele večeri u trajanju do 60 minuta',
+        'Isporuka materijala unutar 7 dana',
       ],
     },
   ];
