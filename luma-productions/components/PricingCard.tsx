@@ -93,20 +93,7 @@ export default function PricingCard({ plan }: PricingCardProps) {
 
       <div style={{ padding: '24px 28px 28px', display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
 
-        {/* Category label */}
-        <span style={{
-          display: 'block',
-          fontSize: '11px',
-          fontWeight: 500,
-          letterSpacing: '0.08em',
-          textTransform: 'uppercase',
-          color: '#888',
-          marginBottom: '10px',
-        }}>
-          {plan.name}
-        </span>
-
-        {/* Price row */}
+        {/* Name row */}
         <div style={{ display: 'flex', alignItems: 'baseline', gap: '8px', marginBottom: '20px' }}>
           <span style={{
             fontSize: '32px',
@@ -115,7 +102,7 @@ export default function PricingCard({ plan }: PricingCardProps) {
             color: '#111',
             lineHeight: 1,
           }}>
-            {plan.price}
+            {plan.name}
           </span>
           {plan.priceLabel && (
             <span style={{
@@ -182,6 +169,22 @@ export default function PricingCard({ plan }: PricingCardProps) {
             </motion.li>
           ))}
         </motion.ul>
+        <motion.div
+          style={{ marginTop: 'auto', paddingTop: '20px', textAlign: 'center', borderTop: '1px solid #ebebeb' }}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.4 }}
+        >
+          <span style={{
+            fontSize: '32px',
+            fontWeight: 700,
+            letterSpacing: '-0.02em',
+            color: '#111',
+            lineHeight: 1,
+          }}>
+            {plan.price}
+          </span>
+        </motion.div>
       </div>
     </motion.div>
   );

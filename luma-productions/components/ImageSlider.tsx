@@ -21,13 +21,13 @@ interface ImageSliderProps {
   images: GalleryImage[];
 }
 
-const SLOT_STEP_VW = 22;
+const SLOT_STEP_VW = 28;
 
 // Anchors for slot distances -2,-1,0,1,2 (in vw) — increased spacing
-const BASE_X_VW = [-50, -28, 0, 28, 50];
+const BASE_X_VW = [-65, -35, 0, 35, 65];
 const BASE_Z = [1, 2, 10, 2, 1];
 
-const BASE_SIZE = { w: 'min(500px,82vw)', h: 'min(580px,63vh)' };
+const BASE_SIZE = { w: 'clamp(280px, 82vw, 500px)', h: 'clamp(320px, 63vh, 580px)' };
 // no rounded corners
 const BASE_ROUNDED = '';
 
@@ -244,7 +244,7 @@ export default function ImageSlider({ images }: ImageSliderProps) {
       >
         <div
           style={{ width: BASE_SIZE.w, height: BASE_SIZE.h }}
-          className={`relative overflow-hidden shadow-2xl ${BASE_ROUNDED}`}
+          className={`relative overflow-hidden shadow-lg md:shadow-2xl ${BASE_ROUNDED}`}
         >
           {img?.src ? (
             <Image
@@ -272,9 +272,9 @@ export default function ImageSlider({ images }: ImageSliderProps) {
   }
 
   return (
-    <div className="relative w-full h-[calc(100dvh-4rem)] bg-black overflow-hidden select-none flex flex-col">
+    <div className="relative w-full h-[calc(100dvh-4rem)] md:h-[calc(100dvh-5rem)] bg-black overflow-hidden select-none flex flex-col">
       {/* Heading */}
-      <div className="relative z-20 pt-10 pb-4 flex flex-col items-center px-4">
+      <div className="relative z-20 pt-6 md:pt-10 pb-2 md:pb-4 flex flex-col items-center px-4">
       
       </div>
 
@@ -292,16 +292,16 @@ export default function ImageSlider({ images }: ImageSliderProps) {
       </div>
 
       {/* Hint + dots */}
-      <div className="relative z-20 flex flex-col items-center gap-3 pb-7 pt-2">
-        <p className="text-white/25 text-[10px] tracking-[0.35em] uppercase">← vuci →</p>
+      <div className="relative z-20 flex flex-col items-center gap-2 md:gap-3 pb-4 md:pb-7 pt-1 md:pt-2 px-4">
+        <p className="text-white/25 text-[8px] md:text-[10px] tracking-[0.35em] uppercase">← vuci →</p>
 
-        <div className="flex gap-2">
+        <div className="flex gap-1.5 md:gap-2 flex-wrap justify-center">
           {images.map((_, i) => (
             <button
               key={i}
               onClick={() => goToIndex(i, 0)}
-              className={`h-1.5 rounded-full transition-all duration-300 ${
-                i === dotIndex ? 'bg-white w-8' : 'bg-white/35 hover:bg-white/60 w-1.5'
+              className={`h-1 md:h-1.5 rounded-full transition-all duration-300 ${
+                i === dotIndex ? 'bg-white w-6 md:w-8' : 'bg-white/35 hover:bg-white/60 w-1 md:w-1.5'
               }`}
               aria-label={`Go to image ${i + 1}`}
             />
