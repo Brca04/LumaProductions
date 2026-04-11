@@ -1,8 +1,7 @@
 import { Metadata } from 'next';
-import Image from 'next/image';
-import Link from 'next/link';
 import PricingCard from '@/components/PricingCard';
 import ReklameHero from '@/components/ReklameHero';
+import WeddingGalleryCarousel from '@/components/WeddingGalleryCarousel';
 import ZadovoljniKlijenti from '@/components/ZadovoljniKlijenti';
 
 export const metadata: Metadata = {
@@ -128,100 +127,43 @@ export default function Reklame() {
       <ReklameHero />
 
       {/* Description Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="prose max-w-none">
-          <p className="text-lg text-gray-700 mb-6">
-            U digitalnom dobu, kvalitetna vizualna komunikacija je ključ uspjeha svakog brenda.
-            Naš tim specijaliziran je za kreiranje uvjerljivog vizualnog sadržaja koji privlači
-            pažnju, komunicira vrijednosti vašeg brenda i potiče akciju. Od fotografije proizvoda
-            do korporativnih portreta i lifestyle shootinga, pokrivamo sve aspekte komercijalne
-            fotografije.
-          </p>
-          <p className="text-lg text-gray-700">
-            Radimo s tvrtkama svih veličina - od startupa do etabliranih brendova - pružajući
-            profesionalnu produkciju, kreativne koncepte i tehnički besprijekornu izvedbu. Naš
-            cilj je stvoriti fotografije koje ne samo da izgledaju odlično, već i donose
-            rezultate za vaš biznis.
-          </p>
-        </div>
-
-        {/* Services List */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
-          <div className="bg-gray-50 p-6 rounded-lg">
-            <h3 className="text-xl font-bold mb-3">Fotografija Proizvoda</h3>
-            <p className="text-gray-700">
-              Profesionalna prezentacija vaših proizvoda za e-commerce, kataloge i marketinške
-              materijale.
-            </p>
-          </div>
-          <div className="bg-gray-50 p-6 rounded-lg">
-            <h3 className="text-xl font-bold mb-3">Korporativni Portreti</h3>
-            <p className="text-gray-700">
-              Profesionalni portreti za web stranice, LinkedIn profile i poslovne publikacije.
-            </p>
-          </div>
-          <div className="bg-gray-50 p-6 rounded-lg">
-            <h3 className="text-xl font-bold mb-3">Brand Lifestyle</h3>
-            <p className="text-gray-700">
-              Autentične lifestyle fotografije koje pričaju priču vašeg brenda i povezuju se
-              s publikom.
-            </p>
-          </div>
-          <div className="bg-gray-50 p-6 rounded-lg">
-            <h3 className="text-xl font-bold mb-3">Social Media Content</h3>
-            <p className="text-gray-700">
-              Privlačan vizualni sadržaj optimiziran za društvene mreže i digitalne platforme.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Gallery Section */}
-      <section className="py-24 ">
+      <section className="py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 text-center mb-16">
-            Portfolio
-          </h2>
+          <div className="grid grid-cols-1 lg:grid-cols-[auto_1fr] gap-10 lg:gap-20">
+            {/* Left — kicker + heading */}
+            <div className="lg:max-w-sm">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#BE9E5C] mb-4">
+                Naš pristup
+              </p>
+              <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 leading-[1.1]">
+                Vizualni sadržaj{" "}
+                <span className="text-[#BE9E5C]">koji prodaje</span>
+              </h2>
+              <div className="w-12 h-px bg-[#BE9E5C] mt-6" />
+            </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {brandCards.map((brand) => (
-              <Link
-                key={brand.id}
-                href={brand.href}
-                className="group relative aspect-[3/4] rounded-[2rem] overflow-hidden shadow-[0_10px_40px_-12px_rgba(0,0,0,0.25)] transition-transform duration-500 ease-out hover:-translate-y-1"
-              >
-                {/* Background image */}
-                <Image
-                  src={brand.imageSrc}
-                  alt={brand.name}
-                  fill
-                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                />
-
-                {/* Gradient overlay */}
-                <div
-                  aria-hidden
-                  className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"
-                />
-
-                {/* Content */}
-                <div className="absolute inset-0 p-6 flex flex-col justify-end">
-                  <h3 className="text-white text-3xl font-semibold tracking-tight leading-tight">
-                    {brand.name}
-                  </h3>
-                  <p className="text-white/70 text-sm font-light mt-1 mb-5">
-                    {brand.category}
-                  </p>
-
-                  <span className="block w-full text-center text-[15px] font-medium text-gray-900 py-3.5 px-6 rounded-full bg-white/95 backdrop-blur-md shadow-sm transition-colors duration-200 group-hover:bg-white">
-                    Galerija
-                  </span>
-                </div>
-              </Link>
-            ))}
+            {/* Right — paragraphs */}
+            <div className="space-y-6 max-w-2xl lg:pt-2">
+              <p className="text-lg text-gray-600 leading-[1.8] font-light">
+                U digitalnom dobu, kvalitetna vizualna komunikacija je ključ
+                uspjeha svakog brenda. Naš tim specijaliziran je za kreiranje
+                uvjerljivog vizualnog sadržaja koji privlači pažnju, komunicira
+                vrijednosti vašeg brenda i potiče akciju — od fotografije
+                proizvoda do korporativnih portreta i lifestyle shootinga.
+              </p>
+              <p className="text-lg text-gray-600 leading-[1.8] font-light">
+                Radimo s tvrtkama svih veličina — od startupa do etabliranih
+                brendova — pružajući profesionalnu produkciju, kreativne
+                koncepte i tehnički besprijekornu izvedbu. Naš cilj je stvoriti
+                fotografije koje ne samo da izgledaju odlično, već i donose
+                rezultate za vaš biznis.
+              </p>
+            </div>
           </div>
         </div>
       </section>
+
+      <WeddingGalleryCarousel cards={brandCards} />
 
       <ZadovoljniKlijenti />
     </div>

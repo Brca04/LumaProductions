@@ -14,37 +14,18 @@ export default function MaturalneCTA() {
       style={{ padding: 'clamp(4rem, 10vw, 6rem) 1.5rem' }}
     >
       <div className="max-w-2xl mx-auto px-2">
-        <h3
-          style={{
-            fontFamily: "'Bebas Neue', 'Impact', sans-serif",
-            fontSize: "clamp(2.8rem, 10vw, 4.5rem)",
-            lineHeight: 0.9,
-            letterSpacing: "0.01em",
-            color: "#111",
-            marginBottom: "0.8rem",
-          }}
-        >
+        <h3 className="text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 leading-[1.1] mb-4">
           Rezervirajte<br />
-          <span style={{ color: "#BE9E5C" }}>Svoj Termin</span>
+          <span className="text-[#BE9E5C]">svoj termin</span>
         </h3>
         <motion.div
           initial={{ scaleX: 0 }}
           whileInView={{ scaleX: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="w-12 h-px mx-auto mb-6"
-          style={{ backgroundColor: "#BE9E5C" }}
+          className="w-12 h-px mx-auto mb-6 bg-[#BE9E5C]"
         />
-        <p
-          style={{
-            fontFamily: "'DM Sans', sans-serif",
-            fontSize: "clamp(0.85rem, 2.5vw, 0.95rem)",
-            color: "rgba(0,0,0,0.45)",
-            lineHeight: 1.9,
-            fontWeight: 300,
-            marginBottom: "2.5rem",
-          }}
-        >
+        <p className="text-lg text-gray-600 leading-[1.8] font-light mb-10">
           Kontaktirajte nas i osigurajte nezaboravnu dokumentaciju vaše maturalne večeri.
         </p>
         <Link
@@ -56,8 +37,8 @@ export default function MaturalneCTA() {
             minHeight: "52px",
             padding: "0 2.5rem",
             border: "1.5px solid #111",
+            borderRadius: "9999px",
             color: "#111",
-            fontFamily: "'DM Sans', sans-serif",
             fontSize: "0.75rem",
             fontWeight: 600,
             letterSpacing: "0.2em",

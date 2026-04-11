@@ -41,8 +41,6 @@ export default function MaturalneVeceri() {
       <section className="relative h-[100dvh] overflow-hidden">
 
         <style>{`
-          @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400&display=swap');
-
           @keyframes pRise {
             from { opacity:0; transform: translateY(60px) skewY(3deg); }
             to   { opacity:1; transform: translateY(0) skewY(0deg); }
@@ -56,9 +54,8 @@ export default function MaturalneVeceri() {
             50%     { transform: translateY(8px); opacity:0.3; }
           }
           .p-tag {
-            font-family: 'DM Sans', sans-serif;
             font-size: 0.7rem;
-            font-weight: 400;
+            font-weight: 600;
             letter-spacing: 0.25em;
             text-transform: uppercase;
             color: #BE9E5C;
@@ -66,12 +63,12 @@ export default function MaturalneVeceri() {
             animation: pFade 0.6s ease 0.3s forwards;
           }
           .p-word {
-            font-family: 'Bebas Neue', 'Impact', sans-serif;
-            font-size: clamp(5rem, 13vw, 11rem);
-            line-height: 0.88;
+            font-size: clamp(4rem, 10vw, 8rem);
+            font-weight: 600;
+            line-height: 1;
+            letter-spacing: -0.025em;
             color: #fff;
             display: block;
-            letter-spacing: 0.01em;
           }
           .p-word-1 {
             opacity: 0;
@@ -83,12 +80,10 @@ export default function MaturalneVeceri() {
             color: #BE9E5C;
           }
           .p-desc {
-            font-family: 'DM Sans', sans-serif;
-            font-size: 0.9rem;
-            color: rgba(255,255,255,0.45);
-            line-height: 1.9;
+            font-size: 1rem;
+            color: rgba(255,255,255,0.65);
+            line-height: 1.8;
             font-weight: 300;
-            letter-spacing: 0.01em;
             opacity: 0;
             animation: pFade 0.8s ease 1.3s forwards;
           }
@@ -108,11 +103,11 @@ export default function MaturalneVeceri() {
             z-index: 10;
           }
           .p-scroll-label {
-            font-family: 'DM Sans', sans-serif;
             font-size: 0.6rem;
+            font-weight: 500;
             letter-spacing: 0.3em;
             text-transform: uppercase;
-            color: rgba(255,255,255,0.3);
+            color: rgba(255,255,255,0.4);
           }
           .p-scroll-dot {
             width: 4px; height: 4px; border-radius: 50%;
@@ -126,7 +121,7 @@ export default function MaturalneVeceri() {
               padding: 0 1.5rem calc(3rem + 32px) !important;
             }
             .p-desc { display: none; }
-            .p-word { font-size: clamp(5rem, 22vw, 8rem); }
+            .p-word { font-size: clamp(4rem, 18vw, 6.5rem); }
           }
         `}</style>
 
@@ -136,8 +131,6 @@ export default function MaturalneVeceri() {
         >
           <source src="/videoMaturalne.mp4" type="video/mp4" />
         </video>
-
-<div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.5)', pointerEvents: 'none' }} />
 
         {/* Title overlay — bottom of video */}
         <div className="p-hero-overlay" style={{
@@ -161,17 +154,6 @@ export default function MaturalneVeceri() {
             Profesionalna fotografija i video produkcija koja čuva najljepše trenutke vaše maturalne večeri. Vrhunska kvaliteta, pristupačni paketi, nezaboravne uspomene.
           </p>
         </div>
-
-        <div style={{
-          position: 'absolute',
-          bottom: 0,
-          left: 0,
-          right: 0,
-          height: '4rem',
-          background: 'linear-gradient(to bottom, transparent, #000)',
-          pointerEvents: 'none',
-          zIndex: 5,
-        }} />
 
         <div className="p-scroll">
           <span className="p-scroll-label">scroll</span>

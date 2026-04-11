@@ -362,7 +362,7 @@ function StepRow({
   return (
     <div className="mb-8">
       <div className="flex items-center gap-2.5 mb-3">
-        <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-[#BE9E5C] text-white text-[11px] font-semibold shrink-0">
+        <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-black text-white text-[11px] font-semibold shrink-0">
           {num}
         </span>
         <span className="text-sm font-medium text-gray-900">{label}</span>
@@ -453,7 +453,7 @@ export default function MaturantConfigurator() {
         {/* Section heading — matches CTA style on same page */}
         <div className="text-center mb-14">
           <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 mb-4">
-            Prilagodite <span className="text-[#BE9E5C]">Svoj Paket</span>
+            Prilagodite svoj paket
           </h2>
           <div className="w-12 h-px bg-[#BE9E5C] mx-auto mb-5" />
           <p className="text-base text-gray-500 font-light max-w-xl mx-auto">
@@ -632,10 +632,10 @@ export default function MaturantConfigurator() {
                 </div>
 
                 <div className="flex items-baseline gap-1 mb-5">
-                  <span className="text-4xl font-semibold text-[#BE9E5C] tracking-tight">
+                  <span className="text-4xl font-semibold text-black tracking-tight">
                     {pkg.priceNum}€
                   </span>
-                  <span className="text-sm text-[#BE9E5C] font-medium">
+                  <span className="text-sm text-black font-medium">
                     /maturant
                   </span>
                 </div>

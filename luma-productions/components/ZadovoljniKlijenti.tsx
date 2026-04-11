@@ -54,8 +54,8 @@ export default function ZadovoljniKlijenti() {
     <section className="bg-white py-14 md:py-20 overflow-hidden">
       <div className="max-w-3xl mx-auto px-6 text-center">
 
-        <h2 className="text-2xl md:text-3xl font-bold tracking-wide uppercase mb-4">
-          Zadovoljni klijenti
+        <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 leading-[1.1] mb-4">
+          Zadovoljni <span className="text-[#BE9E5C]">klijenti</span>
         </h2>
         <motion.div
           initial={{ scaleX: 0 }}
