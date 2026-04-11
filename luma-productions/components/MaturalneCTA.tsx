@@ -10,7 +10,7 @@ export default function MaturalneCTA() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.3 }}
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-      className="bg-black text-center"
+      className="bg-white text-center"
       style={{ padding: 'clamp(4rem, 10vw, 6rem) 1.5rem' }}
     >
       <div className="max-w-2xl mx-auto px-2">
@@ -20,7 +20,7 @@ export default function MaturalneCTA() {
             fontSize: "clamp(2.8rem, 10vw, 4.5rem)",
             lineHeight: 0.9,
             letterSpacing: "0.01em",
-            color: "#fff",
+            color: "#111",
             marginBottom: "0.8rem",
           }}
         >
@@ -39,7 +39,7 @@ export default function MaturalneCTA() {
           style={{
             fontFamily: "'DM Sans', sans-serif",
             fontSize: "clamp(0.85rem, 2.5vw, 0.95rem)",
-            color: "rgba(255,255,255,0.4)",
+            color: "rgba(0,0,0,0.45)",
             lineHeight: 1.9,
             fontWeight: 300,
             marginBottom: "2.5rem",
@@ -55,8 +55,8 @@ export default function MaturalneCTA() {
             justifyContent: "center",
             minHeight: "52px",
             padding: "0 2.5rem",
-            border: "1.5px solid #BE9E5C",
-            color: "#BE9E5C",
+            border: "1.5px solid #111",
+            color: "#111",
             fontFamily: "'DM Sans', sans-serif",
             fontSize: "0.75rem",
             fontWeight: 600,
@@ -67,12 +67,12 @@ export default function MaturalneCTA() {
             WebkitTapHighlightColor: "transparent",
           }}
           onMouseEnter={e => {
-            (e.currentTarget as HTMLAnchorElement).style.background = "#BE9E5C";
-            (e.currentTarget as HTMLAnchorElement).style.color = "#000";
+            (e.currentTarget as HTMLAnchorElement).style.background = "#111";
+            (e.currentTarget as HTMLAnchorElement).style.color = "#fff";
           }}
           onMouseLeave={e => {
             (e.currentTarget as HTMLAnchorElement).style.background = "transparent";
-            (e.currentTarget as HTMLAnchorElement).style.color = "#BE9E5C";
+            (e.currentTarget as HTMLAnchorElement).style.color = "#111";
           }}
         >
           Kontaktirajte nas

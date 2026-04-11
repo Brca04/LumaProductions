@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
+import { useState } from "react";
 
 const INFO = [
   {
@@ -37,6 +38,36 @@ const stagger = {
 
 export default function KontaktClient() {
   const shouldReduceMotion = useReducedMotion();
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setStatus("sending");
+
+    const form = e.currentTarget;
+    const data = {
+      name: (form.elements.namedItem("name") as HTMLInputElement).value,
+      lastname: (form.elements.namedItem("lastname") as HTMLInputElement).value,
+      email: (form.elements.namedItem("email") as HTMLInputElement).value,
+      phone: (form.elements.namedItem("phone") as HTMLInputElement).value,
+      service: (form.elements.namedItem("service") as HTMLSelectElement).value,
+      message: (form.elements.namedItem("message") as HTMLTextAreaElement).value,
+    };
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      if (!res.ok) throw new Error();
+      setStatus("success");
+      form.reset();
+    } catch {
+      setStatus("error");
+    }
+  }
 
   return (
     <div>
@@ -91,57 +122,77 @@ export default function KontaktClient() {
               <h3 className="text-2xl font-bold mb-2">Kontaktirajte nas</h3>
               <p className="text-gray-500 text-sm mb-8">Javit ćemo vam se u najkraćem mogućem roku.</p>
 
-              <form className="space-y-6">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  <FormField id="name" label="Ime *" type="text" placeholder="Vaše ime" />
-                  <FormField id="lastname" label="Prezime *" type="text" placeholder="Vaše prezime" />
-                </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  <FormField id="email" label="Email *" type="email" placeholder="vas@email.com" />
-                  <FormField id="phone" label="Telefon" type="tel" placeholder="+385 XX XXX XXXX" />
-                </div>
-
-                <div>
-                  <label htmlFor="service" className="block text-xs font-semibold tracking-widest uppercase text-gray-500 mb-2">
-                    Vrsta usluge *
-                  </label>
-                  <select
-                    id="service"
-                    name="service"
-                    required
-                    className="w-full px-4 py-3 border-2 border-gray-200 focus:border-black focus:outline-none transition-all text-gray-700 text-sm"
+              {status === "success" ? (
+                <div className="py-12 text-center">
+                  <p className="text-lg font-semibold text-gray-900 mb-2">Poruka je poslana!</p>
+                  <p className="text-sm text-gray-500">Javit ćemo vam se uskoro.</p>
+                  <button
+                    onClick={() => setStatus("idle")}
+                    className="mt-6 text-sm underline text-gray-500 hover:text-black transition-colors"
                   >
-                    <option value="">Odaberite...</option>
-                    <option value="vjencanje">Vjenčanje</option>
-                    <option value="maturalna">Maturalna večer</option>
-                    <option value="krstenje">Krštenje / Photobooth</option>
-                    <option value="reklama">Reklama / Komercijalno</option>
-                    <option value="ostalo">Ostalo</option>
-                  </select>
+                    Pošalji još jednu poruku
+                  </button>
                 </div>
+              ) : (
+                <form className="space-y-6" onSubmit={handleSubmit}>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <FormField id="name" label="Ime *" type="text" placeholder="Vaše ime" />
+                    <FormField id="lastname" label="Prezime *" type="text" placeholder="Vaše prezime" />
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <FormField id="email" label="Email *" type="email" placeholder="vas@email.com" />
+                    <FormField id="phone" label="Telefon" type="tel" placeholder="+385 XX XXX XXXX" />
+                  </div>
 
-                <div>
-                  <label htmlFor="message" className="block text-xs font-semibold tracking-widest uppercase text-gray-500 mb-2">
-                    Poruka *
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    required
-                    rows={6}
-                    placeholder="Opišite svoj projekt..."
-                    className="w-full px-4 py-3 border-2 border-gray-200 focus:border-black focus:outline-none transition-all resize-none text-gray-700 text-sm"
-                  />
-                </div>
+                  <div>
+                    <label htmlFor="service" className="block text-xs font-semibold tracking-widest uppercase text-gray-500 mb-2">
+                      Vrsta usluge *
+                    </label>
+                    <select
+                      id="service"
+                      name="service"
+                      required
+                      className="w-full px-4 py-3 border-2 border-gray-200 focus:border-black focus:outline-none transition-all text-gray-700 text-sm"
+                    >
+                      <option value="">Odaberite...</option>
+                      <option value="vjencanje">Vjenčanje</option>
+                      <option value="maturalna">Maturalna večer</option>
+                      <option value="krstenje">Krštenje / Photobooth</option>
+                      <option value="reklama">Reklama / Komercijalno</option>
+                      <option value="ostalo">Ostalo</option>
+                    </select>
+                  </div>
 
-                <button
-                  type="submit"
-                  className="group inline-flex items-center gap-3 px-8 py-4 border-2 border-gray-900 font-semibold text-gray-900 bg-white transition-all duration-300 hover:bg-gray-900 hover:text-white text-sm tracking-wide"
-                >
-                  Pošalji poruku
-                  <span className="transform group-hover:translate-x-1 transition-transform">→</span>
-                </button>
-              </form>
+                  <div>
+                    <label htmlFor="message" className="block text-xs font-semibold tracking-widest uppercase text-gray-500 mb-2">
+                      Poruka *
+                    </label>
+                    <textarea
+                      id="message"
+                      name="message"
+                      required
+                      rows={6}
+                      placeholder="Opišite svoj projekt..."
+                      className="w-full px-4 py-3 border-2 border-gray-200 focus:border-black focus:outline-none transition-all resize-none text-gray-700 text-sm"
+                    />
+                  </div>
+
+                  {status === "error" && (
+                    <p className="text-sm text-red-600">Došlo je do greške. Pokušajte ponovo ili nas kontaktirajte direktno.</p>
+                  )}
+
+                  <button
+                    type="submit"
+                    disabled={status === "sending"}
+                    className="group inline-flex items-center gap-3 px-8 py-4 border-2 border-gray-900 font-semibold text-gray-900 bg-white transition-all duration-300 hover:bg-gray-900 hover:text-white text-sm tracking-wide disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {status === "sending" ? "Slanje..." : "Pošalji poruku"}
+                    {status !== "sending" && (
+                      <span className="transform group-hover:translate-x-1 transition-transform">→</span>
+                    )}
+                  </button>
+                </form>
+              )}
             </div>
           </motion.div>
 

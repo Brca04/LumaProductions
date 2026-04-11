@@ -1,11 +1,9 @@
 // app/maturalne-veceri/page.tsx
 
 import { Metadata } from 'next';
-import PricingCard from '@/components/PricingCard';
-import ImageSlider from '@/components/ImageSlider';
-import MaturalneTitleSection from '@/components/MaturalneTitleSection';
-import AnimatedSectionHeading from '@/components/AnimatedSectionHeading';
 import MaturalneCTA from '@/components/MaturalneCTA';
+import MaturantConfigurator from '@/components/MaturantConfigurator';
+import WeddingGalleryCarousel from '@/components/WeddingGalleryCarousel';
 
 export const metadata: Metadata = {
   title: 'Fotografija Maturalne Večeri',
@@ -18,102 +16,26 @@ export const metadata: Metadata = {
   },
 };
 
-export type PricingPlan = {
-  name: string;
-  price: string;
-  imageSrc: string;
-  imageAlt?: string;
-  features: string[];
-  highlighted?: boolean;
-};
-
 export default function MaturalneVeceri() {
-  const pricingPlans: PricingPlan[] = [
-    {
-      name: 'Foto #1',
-      price: '8€/maturant',
-      imageSrc: '/prikaz.webp',
-      features: [
-        'Do 30 maturanata',
-        '1 fotograf',
-        '200 digitalno obrađenih fotografija',
-        'Isporuka materijala do 3 dana',
-      ],
-    },
-    {
-      name: 'Foto #2',
-      price: '5€/maturant',
-      imageSrc: '/prikaz2.webp',
-      features: [
-        '30+ maturanata',
-        '2 fotografa',
-        '300+ digitalno obrađenih fotografija',
-        'Isporuka materijala do 4 dana',
-      ],
-    },
-    {
-      name: 'Video #1',
-      price: '7€/maturant',
-      imageSrc: '/prikaz.webp',
-      features: [
-        '1 snimatelj',
-        'Highlight video do 180 sekundi',
-        'Isporuka materijala kroz 4 dana',
-      ],
-    },
-    {
-      name: 'Video #2',
-      price: '7€/maturant',
-      imageSrc: '/prikaz2.webp',
-      features: [
-        '60+ maturanata',
-        '2 snimatelja',
-        'Video cijele večeri u trajanju do 60 minuta',
-        'Isporuka materijala kroz 4 dana',
-      ],
-    },
-    {
-      name: 'Mix #1',
-      price: '13€/maturant',
-      imageSrc: '/prikaz.webp',
-      features: [
-        'Do 100 maturanata',
-        '1 fotograf',
-        '2 snimatelja',
-        'Do 400 digitalno obrađenih fotografija',
-        'Video cijele večeri u trajanju do 60 minuta',
-        'Isporuka materijala unutar 5 dana',
-      ],
-    },
-    {
-      name: 'Mix #2',
-      price: '10€/maturant',
-      imageSrc: '/prikaz2.webp',
-      features: [
-        '100+ maturanata',
-        '2 fotografa',
-        '2 snimatelja',
-        '800 digitalno obrađenih fotografija',
-        'Video cijele večeri u trajanju do 60 minuta',
-        'Isporuka materijala unutar 7 dana',
-      ],
-    },
-  ];
+  type MaturalneCard = {
+    id: number;
+    name: string;
+    category: string;
+    imageSrc: string;
+    href: string;
+  };
 
-  const galleryImages = [
-    { id: 1, alt: 'Maturalna večer 1', src: '/prikaz.webp' },
-    { id: 2, alt: 'Maturalna večer 2', src: '/prikaz2.webp' },
-    { id: 3, alt: 'Maturalna večer 3', src: '/prikaz3.webp' },
-    { id: 4, alt: 'Maturalna večer 4', src: '/prikaz4.webp' },
-    { id: 5, alt: 'Maturalna večer 5', src: '/prikaz5.webp' },
-    { id: 6, alt: 'Maturalna večer 6', src: '/prikaz2.webp' },
-    { id: 7, alt: 'Maturalna večer 7', src: '/prikaz2.webp' },
-    { id: 8, alt: 'Maturalna večer 8', src: '/prikaz2.webp' },
-    { id: 9, alt: 'Maturalna večer 9', src: '/prikaz2.webp' },
+  const maturalneCards: MaturalneCard[] = [
+    { id: 1, name: 'Gimnazija Požega', category: 'Matura 2024', imageSrc: '/prikaz.webp', href: '/maturalne-veceri/gimnazija-pozega' },
+    { id: 2, name: 'Klasična Gimnazija', category: 'Zagreb', imageSrc: '/prikaz2.webp', href: '/maturalne-veceri/klasicna-gimnazija' },
+    { id: 3, name: 'Ekonomska Škola', category: 'Split', imageSrc: '/prikaz3.webp', href: '/maturalne-veceri/ekonomska-skola' },
+    { id: 4, name: 'III. Gimnazija', category: 'Osijek', imageSrc: '/prikaz4.webp', href: '/maturalne-veceri/iii-gimnazija' },
+    { id: 5, name: 'Tehnička Škola', category: 'Rijeka', imageSrc: '/prikaz5.webp', href: '/maturalne-veceri/tehnicka-skola' },
+    { id: 6, name: 'Jezična Gimnazija', category: 'Dubrovnik', imageSrc: '/prikaz.webp', href: '/maturalne-veceri/jezicna-gimnazija' },
   ];
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-white text-black">
 
       {/* ── Hero ── */}
       <section className="relative h-[100dvh] overflow-hidden">
@@ -173,8 +95,10 @@ export default function MaturalneVeceri() {
           .p-scroll {
             position: absolute;
             bottom: max(2.5rem, env(safe-area-inset-bottom, 0px) + 1.5rem);
-            left: 50%;
-            transform: translateX(-50%);
+            left: 0;
+            right: 0;
+            width: fit-content;
+            margin: 0 auto;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -195,6 +119,15 @@ export default function MaturalneVeceri() {
             background: #BE9E5C;
             animation: scrollDrop 1.6s ease-in-out 2s infinite;
           }
+          @media (max-width: 767px) {
+            .p-hero-overlay {
+              grid-template-columns: 1fr !important;
+              text-align: center;
+              padding: 0 1.5rem calc(3rem + 32px) !important;
+            }
+            .p-desc { display: none; }
+            .p-word { font-size: clamp(5rem, 22vw, 8rem); }
+          }
         `}</style>
 
         <video
@@ -206,45 +139,85 @@ export default function MaturalneVeceri() {
 
 <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.5)', pointerEvents: 'none' }} />
 
-        {/* Fade-to-black gradient at bottom of hero */}
+        {/* Title overlay — bottom of video */}
+        <div className="p-hero-overlay" style={{
+          position: 'absolute',
+          bottom: 0,
+          left: 0,
+          right: 0,
+          padding: '0 2rem calc(3rem + 32px)',
+          background: 'linear-gradient(to bottom, transparent, rgba(0,0,0,0.85))',
+          zIndex: 10,
+          display: 'grid',
+          gridTemplateColumns: '1fr 1fr',
+          gap: '0 3rem',
+          alignItems: 'flex-end',
+        }}>
+          <h1 style={{ margin: 0 }}>
+            <span className="p-word p-word-1">Maturalne</span>
+            <span className="p-word p-word-2" style={{ marginTop: '0.05em' }}>Večeri</span>
+          </h1>
+          <p className="p-desc" style={{ paddingLeft: '20%' }}>
+            Profesionalna fotografija i video produkcija koja čuva najljepše trenutke vaše maturalne večeri. Vrhunska kvaliteta, pristupačni paketi, nezaboravne uspomene.
+          </p>
+        </div>
+
         <div style={{
           position: 'absolute',
           bottom: 0,
           left: 0,
           right: 0,
-          height: '180px',
+          height: '4rem',
           background: 'linear-gradient(to bottom, transparent, #000)',
           pointerEvents: 'none',
           zIndex: 5,
         }} />
 
+        <div className="p-scroll">
+          <span className="p-scroll-label">scroll</span>
+          <div className="p-scroll-dot" />
+        </div>
+
       </section>
 
-      <MaturalneTitleSection />
-
-      {/* ── Gallery ── */}
-      <section id="galerija" className="bg-black h-screen flex flex-col">
-        <div className="px-4 sm:px-6 pt-10 pb-6 text-center flex-shrink-0">
-          <AnimatedSectionHeading label="Naši radovi" title="Galerija" />
-        </div>
-        <div className="flex-1 min-h-0">
-          <ImageSlider images={galleryImages} />
-        </div>
-      </section>
-
-      {/* ── Pricing ── */}
-      <section className="bg-black py-20">
+      {/* Description Section */}
+      <section className="py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-16">
-            <AnimatedSectionHeading label="Odaberite paket" title="Naši Paketi" />
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {pricingPlans.map((plan) => (
-              <PricingCard key={plan.name} plan={plan} />
-            ))}
+          <div className="grid grid-cols-1 lg:grid-cols-[auto_1fr] gap-10 lg:gap-20">
+            {/* Left — kicker + heading */}
+            <div className="lg:max-w-sm">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#BE9E5C] mb-4">
+                Naš pristup
+              </p>
+              <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 leading-[1.1]">
+                Jedna noć,{" "}
+                <span className="text-[#BE9E5C]">milijun uspomena</span>
+              </h2>
+              <div className="w-12 h-px bg-[#BE9E5C] mt-6" />
+            </div>
+
+            {/* Right — paragraphs */}
+            <div className="space-y-6 max-w-2xl lg:pt-2">
+              <p className="text-lg text-gray-600 leading-[1.8] font-light">
+                Matura je kraj jednog poglavlja i početak novog — noć prepuna
+                emocija, prijatelja i trenutaka koje ćete pamtiti zauvijek. Naša
+                zadaća je uhvatiti svaki taj detalj: od pripreme i dolaska,
+                preko prvog plesa, do zadnjih zagrljaja pred zoru.
+              </p>
+              <p className="text-lg text-gray-600 leading-[1.8] font-light">
+                Radimo diskretno, bez ometanja, a opet smo tu za svaki važan
+                kadar. Kombiniramo klasične grupne fotografije s autentičnim
+                reportažnim pristupom — dobit ćete i formalne portrete i
+                spontane trenutke koji najbolje pričaju priču vaše večeri.
+              </p>
+            </div>
           </div>
         </div>
       </section>
+
+      <WeddingGalleryCarousel cards={maturalneCards} />
+
+      <MaturantConfigurator />
 
       <MaturalneCTA />
 

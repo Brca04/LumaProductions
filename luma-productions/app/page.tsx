@@ -256,21 +256,6 @@ export default function Home() {
             </motion.div>
           ))}
         </motion.div>
-
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-          variants={fadeInUp}
-          className="text-center mt-12"
-        >
-          <Link
-            href="/ostalo"
-            className="group inline-flex items-center gap-3 px-8 py-4 border-2 border-gray-200 font-semibold text-gray-700 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-gray-300"
-          >
-            Ostalo
-          </Link>
-        </motion.div>
       </section>
 
       {/* Latest Work Section */}

@@ -5,9 +5,10 @@ import { motion } from "framer-motion";
 interface Props {
   label: string;
   title: string;
+  light?: boolean;
 }
 
-export default function AnimatedSectionHeading({ label, title }: Props) {
+export default function AnimatedSectionHeading({ label, title, light }: Props) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -21,33 +22,21 @@ export default function AnimatedSectionHeading({ label, title }: Props) {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-        style={{
-          fontFamily: "'Bebas Neue', 'Impact', sans-serif",
-          fontSize: "clamp(3rem, 8vw, 6rem)",
-          lineHeight: 0.88,
-          letterSpacing: "0.01em",
-          color: "#fff",
-          margin: "0 0 16px",
-        }}
+        className="text-4xl md:text-5xl font-bold mb-4"
+        style={{ color: light ? "#111" : "#fff" }}
       >
         {title}
       </motion.h2>
-      <motion.p
-        initial={{ opacity: 0, letterSpacing: "0.5em" }}
-        whileInView={{ opacity: 1, letterSpacing: "0.25em" }}
+
+      <motion.div
+        initial={{ scaleX: 0 }}
+        whileInView={{ scaleX: 1 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-        style={{
-          fontFamily: "'DM Sans', sans-serif",
-          fontSize: "0.7rem",
-          fontWeight: 400,
-          textTransform: "uppercase",
-          color: "#BE9E5C",
-          marginBottom: 0,
-        }}
-      >
-        {label}
-      </motion.p>
+        transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+        className="w-24 h-1 mx-auto mb-4"
+        style={{ backgroundColor: "#BE9E5C" }}
+      />
+
     </motion.div>
   );
 }

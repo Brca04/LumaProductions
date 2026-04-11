@@ -1,4 +1,6 @@
 import { Metadata } from 'next';
+import Image from 'next/image';
+import Link from 'next/link';
 import PricingCard from '@/components/PricingCard';
 import ReklameHero from '@/components/ReklameHero';
 import ZadovoljniKlijenti from '@/components/ZadovoljniKlijenti';
@@ -104,13 +106,21 @@ export default function Reklame() {
     },
   ];
 
-  const galleryImages = [
-    { id: 1, alt: 'Komercijalna fotografija 1' },
-    { id: 2, alt: 'Komercijalna fotografija 2' },
-    { id: 3, alt: 'Komercijalna fotografija 3' },
-    { id: 4, alt: 'Komercijalna fotografija 4' },
-    { id: 5, alt: 'Komercijalna fotografija 5' },
-    { id: 6, alt: 'Komercijalna fotografija 6' },
+  type BrandCard = {
+    id: number;
+    name: string;
+    category: string;
+    imageSrc: string;
+    href: string;
+  };
+
+  const brandCards: BrandCard[] = [
+    { id: 1, name: 'Coca-Cola', category: 'Kampanja', imageSrc: '/prikaz.webp', href: '/reklame/coca-cola' },
+    { id: 2, name: 'Pepsi', category: 'Proizvod', imageSrc: '/prikaz2.webp', href: '/reklame/pepsi' },
+    { id: 3, name: 'Nike', category: 'Lifestyle', imageSrc: '/prikaz3.webp', href: '/reklame/nike' },
+    { id: 4, name: 'Adidas', category: 'Sport', imageSrc: '/prikaz4.webp', href: '/reklame/adidas' },
+    { id: 5, name: 'Apple', category: 'Brand', imageSrc: '/prikaz5.webp', href: '/reklame/apple' },
+    { id: 6, name: 'Samsung', category: 'Proizvod', imageSrc: '/prikaz.webp', href: '/reklame/samsung' },
   ];
 
   return (
@@ -167,19 +177,47 @@ export default function Reklame() {
       </section>
 
       {/* Gallery Section */}
-      <section className="bg-gray-50 py-16">
+      <section className="py-24 ">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-bold text-center mb-12">Portfolio</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {galleryImages.map((image) => (
-              <div
-                key={image.id}
-                className="aspect-square bg-gray-200 rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
+          <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 text-center mb-16">
+            Portfolio
+          </h2>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {brandCards.map((brand) => (
+              <Link
+                key={brand.id}
+                href={brand.href}
+                className="group relative aspect-[3/4] rounded-[2rem] overflow-hidden shadow-[0_10px_40px_-12px_rgba(0,0,0,0.25)] transition-transform duration-500 ease-out hover:-translate-y-1"
               >
-                <div className="w-full h-full flex items-center justify-center text-gray-400">
-                  {image.alt}
+                {/* Background image */}
+                <Image
+                  src={brand.imageSrc}
+                  alt={brand.name}
+                  fill
+                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                />
+
+                {/* Gradient overlay */}
+                <div
+                  aria-hidden
+                  className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"
+                />
+
+                {/* Content */}
+                <div className="absolute inset-0 p-6 flex flex-col justify-end">
+                  <h3 className="text-white text-3xl font-semibold tracking-tight leading-tight">
+                    {brand.name}
+                  </h3>
+                  <p className="text-white/70 text-sm font-light mt-1 mb-5">
+                    {brand.category}
+                  </p>
+
+                  <span className="block w-full text-center text-[15px] font-medium text-gray-900 py-3.5 px-6 rounded-full bg-white/95 backdrop-blur-md shadow-sm transition-colors duration-200 group-hover:bg-white">
+                    Galerija
+                  </span>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>

@@ -51,13 +51,13 @@ export default function PricingCard({ plan }: PricingCardProps) {
       whileHover={{ y: -4, transition: { duration: 0.2 } }}
       style={{
         fontFamily: "'DM Sans', 'Helvetica Neue', Arial, sans-serif",
-        background: '#0a0a0a',
+        background: '#fff',
         border: plan.highlighted
           ? '1.5px solid #BE9E5C'
-          : '1.5px solid rgba(255,255,255,0.1)',
+          : '1.5px solid rgba(0,0,0,0.1)',
         boxShadow: plan.highlighted
           ? '0 0 32px 0 rgba(190,158,92,0.12)'
-          : '0 1px 4px 0 rgba(0,0,0,0.4)',
+          : '0 1px 4px 0 rgba(0,0,0,0.08)',
         display: 'flex',
         flexDirection: 'column',
         height: '100%',
@@ -76,13 +76,6 @@ export default function PricingCard({ plan }: PricingCardProps) {
             sizes="(min-width: 768px) 33vw, 100vw"
             priority={!!plan.highlighted}
           />
-          {/* Subtle dark gradient over image bottom */}
-          <div style={{
-            position: 'absolute',
-            inset: 0,
-            background: 'linear-gradient(to bottom, transparent 50%, #0a0a0a 100%)',
-            pointerEvents: 'none',
-          }} />
         </div>
       )}
 
@@ -95,7 +88,7 @@ export default function PricingCard({ plan }: PricingCardProps) {
             fontSize: '36px',
             fontWeight: 400,
             letterSpacing: '0.04em',
-            color: '#fff',
+            color: '#111',
             lineHeight: 1,
           }}>
             {plan.name}
@@ -156,7 +149,7 @@ export default function PricingCard({ plan }: PricingCardProps) {
 
               <span style={{
                 fontSize: '13.5px',
-                color: 'rgba(255,255,255,0.55)',
+                color: 'rgba(0,0,0,0.55)',
                 lineHeight: '1.45',
                 fontWeight: 300,
               }}>
