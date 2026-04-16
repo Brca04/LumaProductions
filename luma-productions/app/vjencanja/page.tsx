@@ -2,6 +2,8 @@ import { Metadata } from 'next';
 import MaturantConfigurator from '@/components/MaturantConfigurator';
 import VjencanjaHero from '@/components/VjencanjaHero';
 import WeddingGalleryCarousel from '@/components/WeddingGalleryCarousel';
+import { weddingItems } from './data';
+import MaturalneCTA from '@/components/MaturalneCTA';
 
 export const metadata: Metadata = {
   title: 'Fotografija Vjenčanja',
@@ -14,22 +16,13 @@ export const metadata: Metadata = {
 };
 
 export default function Vjencanja() {
-  type WeddingCard = {
-    id: number;
-    name: string;
-    category: string;
-    imageSrc: string;
-    href: string;
-  };
-
-  const weddingCards: WeddingCard[] = [
-    { id: 1, name: 'Ana & Marko', category: 'Zagreb', imageSrc: '/prikaz.webp', href: '/vjencanja/ana-marko' },
-    { id: 2, name: 'Ivana & Luka', category: 'Dubrovnik', imageSrc: '/prikaz2.webp', href: '/vjencanja/ivana-luka' },
-    { id: 3, name: 'Petra & Filip', category: 'Istra', imageSrc: '/prikaz3.webp', href: '/vjencanja/petra-filip' },
-    { id: 4, name: 'Maja & Tomislav', category: 'Split', imageSrc: '/prikaz4.webp', href: '/vjencanja/maja-tomislav' },
-    { id: 5, name: 'Lara & Matej', category: 'Hvar', imageSrc: '/prikaz5.webp', href: '/vjencanja/lara-matej' },
-    { id: 6, name: 'Nika & Ivan', category: 'Rovinj', imageSrc: '/prikaz.webp', href: '/vjencanja/nika-ivan' },
-  ];
+  const weddingCards = weddingItems.map((item, i) => ({
+    id: i + 1,
+    name: item.name,
+    category: item.category,
+    imageSrc: item.coverImage,
+    href: `/vjencanja/${item.slug}`,
+  }));
 
   return (
     <div className="min-h-screen">
@@ -75,6 +68,9 @@ export default function Vjencanja() {
       <WeddingGalleryCarousel cards={weddingCards} />
 
       <MaturantConfigurator />
+
+      <MaturalneCTA />
+
     </div>
   );
 }

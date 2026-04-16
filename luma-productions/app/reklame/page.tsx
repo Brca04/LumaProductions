@@ -3,6 +3,7 @@ import PricingCard from '@/components/PricingCard';
 import ReklameHero from '@/components/ReklameHero';
 import WeddingGalleryCarousel from '@/components/WeddingGalleryCarousel';
 import ZadovoljniKlijenti from '@/components/ZadovoljniKlijenti';
+import { brandItems } from './data';
 
 export const metadata: Metadata = {
   title: 'Komercijalna i Reklamna Fotografija',
@@ -105,22 +106,13 @@ export default function Reklame() {
     },
   ];
 
-  type BrandCard = {
-    id: number;
-    name: string;
-    category: string;
-    imageSrc: string;
-    href: string;
-  };
-
-  const brandCards: BrandCard[] = [
-    { id: 1, name: 'Coca-Cola', category: 'Kampanja', imageSrc: '/prikaz.webp', href: '/reklame/coca-cola' },
-    { id: 2, name: 'Pepsi', category: 'Proizvod', imageSrc: '/prikaz2.webp', href: '/reklame/pepsi' },
-    { id: 3, name: 'Nike', category: 'Lifestyle', imageSrc: '/prikaz3.webp', href: '/reklame/nike' },
-    { id: 4, name: 'Adidas', category: 'Sport', imageSrc: '/prikaz4.webp', href: '/reklame/adidas' },
-    { id: 5, name: 'Apple', category: 'Brand', imageSrc: '/prikaz5.webp', href: '/reklame/apple' },
-    { id: 6, name: 'Samsung', category: 'Proizvod', imageSrc: '/prikaz.webp', href: '/reklame/samsung' },
-  ];
+  const brandCards = brandItems.map((item, i) => ({
+    id: i + 1,
+    name: item.name,
+    category: item.category,
+    imageSrc: item.coverImage,
+    href: `/reklame/${item.slug}`,
+  }));
 
   return (
     <div className="min-h-screen">

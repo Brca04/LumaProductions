@@ -1,20 +1,22 @@
 import { Metadata } from 'next';
+import KrstenjaHero from '@/components/KrstenjaHero';
 import PricingCard from '@/components/PricingCard';
+import WeddingGalleryCarousel from '@/components/WeddingGalleryCarousel';
+import { photoboothItems } from './data';
 
 export const metadata: Metadata = {
-  title: 'Fotografija Krštenja',
-  description: 'Profesionalna fotografija krštenja. Sačuvajte prekrasne obiteljske trenutke. Diskretno i profesionalno fotografiranje vašeg posebnog dana.',
-  keywords: ['krštenje', 'fotografija krštenja', 'obiteljska fotografija', 'foto studio'],
+  title: 'Najam Photobooth-a',
+  description:
+    'Najam photobooth-a za vjenčanja, korporativne evente, maturalne večeri i privatna slavlja. Neograničeni ispisi, rekviziti i digitalna galerija.',
+  keywords: ['photobooth', 'najam photobooth', 'foto kutak', 'event', 'vjenčanje', 'korporativni event'],
   openGraph: {
-    title: 'Fotografija Krštenja | Foto Studio',
-    description: 'Profesionalna fotografija krštenja. Sačuvajte prekrasne obiteljske trenutke.',
+    title: 'Najam Photobooth-a | Luma Productions',
+    description:
+      'Profesionalni photobooth za sve vrste evenata — neograničeni ispisi i digitalna galerija.',
   },
 };
 
-type PlanCategory = 'foto' | 'video' | 'mix';
-
 type PricingPlan = {
-  category: PlanCategory;
   name: string;
   price: string;
   imageSrc: string;
@@ -23,151 +25,123 @@ type PricingPlan = {
   highlighted?: boolean;
 };
 
-export default function Krstenja() {
-const pricingPlans: PricingPlan[] = [
+export default function Photobooth() {
+  const pricingPlans: PricingPlan[] = [
     {
-      category: 'foto',
-      name: 'Foto #1',
-      price: '8€/maturant',
+      name: 'Basic',
+      price: '300€',
       imageSrc: '/prikaz.webp',
       features: [
-        'Do 30 maturanata',
-        '1 fotograf',
-        '200 digitalno obrađenih fotografija',
-        'Isporuka materijala do 3 dana',
+        '3 sata najma',
+        'Neograničeni digitalni ispisi',
+        'Osnovni set rekvizita',
+        'Online galerija sa svim fotografijama',
+        'Dostava i postavljanje',
       ],
     },
     {
-      category: 'foto',
-      name: 'Foto #2',
-      price: '5€/maturant',
+      name: 'Standard',
+      price: '450€',
       imageSrc: '/prikaz2.webp',
+      highlighted: true,
       features: [
-        '30+ maturanata',
-        '2 fotografa',
-        '300+ digitalno obrađenih fotografija',
-        'Isporuka materijala do 4 dana',
+        '4 sata najma',
+        'Neograničeni fizički ispisi',
+        'Prošireni set rekvizita',
+        'Izbor pozadine',
+        'Online galerija sa svim fotografijama',
+        'USB sa svim materijalima',
+        'Dostava i postavljanje',
       ],
     },
     {
-      category: 'video',
-      name: 'Video #1',
-      price: '7€/maturant',
-      imageSrc: '/prikaz.webp',
+      name: 'Premium',
+      price: '600€',
+      imageSrc: '/prikaz3.webp',
       features: [
-        '1 snimatelj',
-        'Highlight video do 180 sekundi',
-        'Isporuka materijala kroz 4 dana',
+        '6 sati najma',
+        'Neograničeni fizički ispisi',
+        'Custom brendirani layout',
+        'Custom pozadina ili backdrop',
+        'Premium set rekvizita',
+        'Instant upload na društvene mreže',
+        'Online galerija i USB',
+        'Dedicirani operater',
       ],
     },
-    {
-      category: 'video',
-      name: 'Video #2',
-      price: '7€/maturant',
-      imageSrc: '/prikaz2.webp',
-      features: [
-        '60+ maturanata',
-        '2 snimatelja',
-        'Video cijele večeri u trajanju do 60 minuta',
-        'Isporuka materijala kroz 4 dana',
-      ],
-    },
-    {
-      category: 'mix',
-      name: 'Mix #1',
-      price: '13€/maturant',
-      imageSrc: '/prikaz.webp',
-      features: [
-        'Do 100 maturanata',
-        '1 fotograf',
-        '2 snimatelja',
-        'Do 400 digitalno obrađenih fotografija',
-        'Video cijele večeri u trajanju do 60 minuta',
-        'Isporuka materijala unutar 5 dana',
-      ],
-    },
-    {
-      category: 'mix',
-      name: 'Mix #2',
-      price: '10€/maturant',
-      imageSrc: '/prikaz2.webp',
-      features: [
-        '100+ maturanata',
-        '2 fotografa',
-        '2 snimatelja',
-        '800 digitalno obrađenih fotografija',
-        'Video cijele večeri u trajanju do 60 minuta',
-        'Isporuka materijala unutar 7 dana',
-      ],
-    },
-];
-
-
-  const galleryImages = [
-    { id: 1, alt: 'Krštenje 1' },
-    { id: 2, alt: 'Krštenje 2' },
-    { id: 3, alt: 'Krštenje 3' },
-    { id: 4, alt: 'Krštenje 4' },
-    { id: 5, alt: 'Krštenje 5' },
-    { id: 6, alt: 'Krštenje 6' },
   ];
+
+  const photoboothCards = photoboothItems.map((item, i) => ({
+    id: i + 1,
+    name: item.name,
+    category: item.category,
+    imageSrc: item.coverImage,
+    href: `/krstenja/${item.slug}`,
+  }));
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="relative h-[400px] bg-gradient-to-r from-blue-900 to-cyan-800 text-white flex items-center">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-          <h1 className="text-5xl md:text-6xl font-bold mb-4">
-            Krštenja
-          </h1>
-          <p className="text-xl md:text-2xl text-gray-200">
-            Sačuvajte dragocjene obiteljske trenutke koji će ostati zauvijek
-          </p>
-        </div>
-      </section>
+      <KrstenjaHero />
 
       {/* Description Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="prose max-w-none">
-          <p className="text-lg text-gray-700 mb-6">
-            Krštenje je poseban dan koji okuplja obitelj i prijatelje da proslave novo dijete.
-            Ovi intimni trenuci zaslužuju biti sačuvani s pažnjom i osjetljivošću. Naš tim
-            specijaliziran je za diskretno fotografiranje ceremonije i obiteljskog slavlja,
-            hvatajući emocije i radost ovog jedinstvenog dana.
-          </p>
-          <p className="text-lg text-gray-700">
-            Razumijemo važnost ovih trenutaka za vašu obitelj. Pristupamo svakom krštenju s
-            poštovanjem prema ceremoniji i s ciljem stvaranja fotografija koje će vaša obitelj
-            cijeniti generacijama.
-          </p>
-        </div>
-      </section>
-
-      {/* Gallery Section */}
-      <section className="bg-gray-50 py-16">
+      <section className="py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-bold text-center mb-12">Naš Rad</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {galleryImages.map((image) => (
-              <div
-                key={image.id}
-                className="aspect-square bg-gray-200 rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
-              >
-                <div className="w-full h-full flex items-center justify-center text-gray-400">
-                  {image.alt}
-                </div>
-              </div>
-            ))}
+          <div className="grid grid-cols-1 lg:grid-cols-[auto_1fr] gap-10 lg:gap-20">
+            {/* Left — kicker + heading */}
+            <div className="lg:max-w-sm">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#BE9E5C] mb-4">
+                Naš pristup
+              </p>
+              <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 leading-[1.1]">
+                Zabava koja{' '}
+                <span className="text-[#BE9E5C]">ostaje u kadru</span>
+              </h2>
+              <div className="w-12 h-px bg-[#BE9E5C] mt-6" />
+            </div>
+
+            {/* Right — paragraphs */}
+            <div className="space-y-6 max-w-2xl lg:pt-2">
+              <p className="text-lg text-gray-600 leading-[1.8] font-light">
+                Photobooth pretvara svaki event u interaktivno iskustvo. Od
+                vjenčanja i maturalnih večeri do korporativnih lansiranja i privatnih
+                slavlja — naš booth donosi rekvizite, svjetla i instant ispise, a
+                vaši gosti stvaraju uspomene koje odmah mogu ponijeti kući.
+              </p>
+              <p className="text-lg text-gray-600 leading-[1.8] font-light">
+                Svaki paket uključuje dostavu, postavljanje i operatera koji brine o
+                tehnici dok vi uživate u slavlju. Pozadine, layout ispisa i rekvizite
+                prilagođavamo temi vašeg eventa, a sve fotografije dobijate i u
+                digitalnoj galeriji odmah nakon događaja.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
+      <WeddingGalleryCarousel cards={photoboothCards} />
+
       {/* Pricing Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <h2 className="text-4xl font-bold text-center mb-4">Paketi za Krštenje</h2>
-        <p className="text-center text-gray-600 mb-12 text-lg">
-          Odaberite paket koji odgovara vašim potrebama
-        </p>
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+        <div className="grid grid-cols-1 lg:grid-cols-[auto_1fr] gap-10 lg:gap-20 mb-16">
+          <div className="lg:max-w-sm">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#BE9E5C] mb-4">
+              Cjenik
+            </p>
+            <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 leading-[1.1]">
+              Paketi <span className="text-[#BE9E5C]">najma</span>
+            </h2>
+            <div className="w-12 h-px bg-[#BE9E5C] mt-6" />
+          </div>
+
+          <div className="max-w-2xl lg:pt-2">
+            <p className="text-lg text-gray-600 leading-[1.8] font-light">
+              Odaberite paket prema trajanju i vrsti eventa. Sve cijene uključuju
+              dostavu, postavljanje i operatera. Dodatni sati i custom brending
+              dostupni su na upit.
+            </p>
+          </div>
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {pricingPlans.map((plan, index) => (
             <PricingCard key={index} plan={plan} />

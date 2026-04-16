@@ -4,6 +4,7 @@ import { Metadata } from 'next';
 import MaturalneCTA from '@/components/MaturalneCTA';
 import MaturantConfigurator from '@/components/MaturantConfigurator';
 import WeddingGalleryCarousel from '@/components/WeddingGalleryCarousel';
+import { maturalneItems } from './data';
 
 export const metadata: Metadata = {
   title: 'Fotografija Maturalne Večeri',
@@ -17,22 +18,13 @@ export const metadata: Metadata = {
 };
 
 export default function MaturalneVeceri() {
-  type MaturalneCard = {
-    id: number;
-    name: string;
-    category: string;
-    imageSrc: string;
-    href: string;
-  };
-
-  const maturalneCards: MaturalneCard[] = [
-    { id: 1, name: 'Gimnazija Požega', category: 'Matura 2024', imageSrc: '/prikaz.webp', href: '/maturalne-veceri/gimnazija-pozega' },
-    { id: 2, name: 'Klasična Gimnazija', category: 'Zagreb', imageSrc: '/prikaz2.webp', href: '/maturalne-veceri/klasicna-gimnazija' },
-    { id: 3, name: 'Ekonomska Škola', category: 'Split', imageSrc: '/prikaz3.webp', href: '/maturalne-veceri/ekonomska-skola' },
-    { id: 4, name: 'III. Gimnazija', category: 'Osijek', imageSrc: '/prikaz4.webp', href: '/maturalne-veceri/iii-gimnazija' },
-    { id: 5, name: 'Tehnička Škola', category: 'Rijeka', imageSrc: '/prikaz5.webp', href: '/maturalne-veceri/tehnicka-skola' },
-    { id: 6, name: 'Jezična Gimnazija', category: 'Dubrovnik', imageSrc: '/prikaz.webp', href: '/maturalne-veceri/jezicna-gimnazija' },
-  ];
+  const maturalneCards = maturalneItems.map((item, i) => ({
+    id: i + 1,
+    name: item.name,
+    category: item.category,
+    imageSrc: item.coverImage,
+    href: `/maturalne-veceri/${item.slug}`,
+  }));
 
   return (
     <div className="min-h-screen bg-white text-black">
